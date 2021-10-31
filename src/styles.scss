@@ -15,7 +15,7 @@ mat-card {
   width: 50vw !important;
   background: #de5b5b !important;
   color: white !important;
-
+  z-index: 2000 !important;
   input {
     color: white !important;
   }
@@ -34,8 +34,17 @@ mat-form-field {
 }
 
 h1 {
-    font-family:  'Irish Grover', cursive !important;
-    font-size: 40px !important;
-    color: white;
-    margin: 16px 0 0 16px !important;
+  font-family: "Irish Grover", cursive !important;
+  font-size: 40px !important;
+  color: white;
+  margin: 16px 0 0 16px !important;
+}
+
+.mat-form-field-empty.mat-form-field-label {
+  color: rgb(255, 255, 255);
+}
+
+.mat-form-field-appearance-legacy.mat-form-field-can-float.mat-form-field-should-float
+  .mat-form-field-label:not(.mat-empty):not(.mat-form-field-empty) {
+  color: white;
 }

@@ -1,0 +1,12 @@
+<h2 mat-dialog-title>Create Channel</h2>
+<div mat-dialog-content>
+   
+    <input #name  placeholder="Channel Name" type="text">
+    <input #pw  placeholder="Channel Password" type="text">
+
+</div>
+<div mat-dialog-actions>
+  <button mat-button mat-dialog-close>Close</button>
+  <button *ngIf="name.value && pw.value" (click)="saveChannel()" mat-button mat-dialog-close>Save</button>
+
+</div>

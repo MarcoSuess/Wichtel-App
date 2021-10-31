@@ -96,7 +96,7 @@ export class AuthService {
   }
 
   navigateToBoard() {
-    this.router.navigateByUrl('/dashboard/' + this.currentUserID);
+    this.router.navigateByUrl('/channel/' + this.currentUserID);
   }
 
   navigateToSignIn() {
@@ -111,11 +111,8 @@ export class AuthService {
       uid: user.uid,
       email: user.email,
       displayName: name,
-      photoURL: 'assets/img/1.webp',
       emailVerified: user.emailVerified,
       online: false,
-      status: '',
-      privateChatUID: [],
     };
     return userRef.set(userData, {
       merge: true,

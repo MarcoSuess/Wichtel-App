@@ -1,0 +1,18 @@
+<div *ngIf="userService.loadCurrentUser">
+  <button
+    class="add-channel-btn"
+    mat-fab
+    color="primary"
+    aria-label="Example icon button with a delete icon"
+    (click)="openDialog()"
+  >
+    <mat-icon>add</mat-icon>
+  </button>
+
+  <mat-icon class="material-icons-outlined"> power_settings_new </mat-icon>
+
+  <div>
+      
+  </div>
+
+</div>

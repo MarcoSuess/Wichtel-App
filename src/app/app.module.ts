@@ -25,10 +25,14 @@ import { CommonModule } from '@angular/common';
 import { SignInComponent } from './sign-in/sign-in.component';
 import { SignUpComponent } from './sign-up/sign-up.component';
 import { AuthService } from './services/auth/auth.service';
+import { ChannelsComponent } from './channels/channels.component';
+import {MatTabsModule} from '@angular/material/tabs';
+import {MatButtonModule} from '@angular/material/button';
+import { DialogAddChannelComponent } from './dialog-add-channel/dialog-add-channel.component';
 
 
 @NgModule({
-  declarations: [AppComponent, SignInComponent, SignUpComponent],
+  declarations: [AppComponent, SignInComponent, SignUpComponent, ChannelsComponent, DialogAddChannelComponent],
   imports: [
     AngularFireModule.initializeApp(environment.firebase),
     AngularFirestoreModule,
@@ -49,6 +53,8 @@ import { AuthService } from './services/auth/auth.service';
     MatProgressSpinnerModule,
     MatSnackBarModule,
     CommonModule,
+    MatTabsModule,
+    MatButtonModule
   ],
   providers: [AuthService],
   bootstrap: [AppComponent],
