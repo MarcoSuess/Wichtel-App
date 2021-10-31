@@ -1,0 +1,60 @@
+<div class="main-wrapper" fxLayout="row" fxLayoutAlign="center center">
+  <mat-card class="box">
+    <mat-card-header>
+      <mat-card-title>Sign Up</mat-card-title>
+    </mat-card-header>
+
+    <form class="example-form">
+      <mat-card-content>
+        <mat-form-field class="example-full-width">
+          <input #name matInput placeholder="Name" />
+        </mat-form-field>
+
+        <mat-form-field class="example-full-width">
+          <input
+            #email
+            matInput
+            placeholder="Email"
+            [formControl]="authService.email"
+            required
+          />
+          <mat-error *ngIf="authService.email.invalid">{{
+            authService.getErrorMessageEmail()
+          }}</mat-error>
+        </mat-form-field>
+
+        <mat-form-field class="example-full-width">
+          <input
+            type="password"
+            #password
+            matInput
+            placeholder="Password"
+            [formControl]="authService.password"
+            required
+          />
+          <mat-error *ngIf="authService.password.invalid">{{
+            authService.getErrorMessagePassword()
+          }}</mat-error>
+        </mat-form-field>
+ 
+      </mat-card-content>
+      <a>
+        <button
+          (click)="
+            authService.signUpUser(email.value, password.value, name.value)
+          "
+          mat-stroked-button
+          color="accent"
+          class="btn-block"
+        >
+          Sign Up
+        </button>
+      </a>
+    </form>
+
+    <p class="outside-message">
+      Already Register?
+      <a routerLink="/sign-in" routerLinkActive="router-link-active">Sign-In</a>
+    </p>
+  </mat-card>
+</div>

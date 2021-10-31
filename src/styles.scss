@@ -1,1 +1,41 @@
 /* You can add global styles to this file, and also import other style files */
+@import "~@angular/material/prebuilt-themes/indigo-pink.css";
+@import url("https://fonts.googleapis.com/css2?family=Irish+Grover&display=swap");
+html,
+body {
+  height: 100%;
+}
+body {
+  margin: 0;
+  background-image: url("/assets/background.jpg");
+  background-size: cover;
+}
+
+mat-card {
+  width: 50vw !important;
+  background: #de5b5b !important;
+  color: white !important;
+
+  input {
+    color: white !important;
+  }
+
+  input:-webkit-autofill {
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: white !important;
+  }
+
+  mat-error {
+    color: white !important;
+  }
+}
+mat-form-field {
+  color: white;
+}
+
+h1 {
+    font-family:  'Irish Grover', cursive !important;
+    font-size: 40px !important;
+    color: white;
+    margin: 16px 0 0 16px !important;
+}
