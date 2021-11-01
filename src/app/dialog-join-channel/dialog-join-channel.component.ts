@@ -1,5 +1,6 @@
 import { Component, Inject, OnInit } from '@angular/core';
-import { MAT_DIALOG_DATA } from '@angular/material/dialog';
+import { MatDialogRef, MAT_DIALOG_DATA } from '@angular/material/dialog';
+import { Router } from '@angular/router';
 import { AuthService } from '../services/auth/auth.service';
 import { ChannelService } from '../services/channel/channel.service';
 import { UserService } from '../services/user/user.service';
@@ -12,32 +13,50 @@ import { UserService } from '../services/user/user.service';
 export class DialogJoinChannelComponent implements OnInit {
   constructor(
     @Inject(MAT_DIALOG_DATA) public channel: any,
-    private userService: UserService,
+    public userService: UserService,
     public authService: AuthService,
-    private channelService: ChannelService
+    private channelService: ChannelService,
+    public router: Router,
+    private dialogRef: MatDialogRef<DialogJoinChannelComponent>
   ) {}
 
   ngOnInit(): void {}
 
   joinChannel(password: string) {
     if (password == this.channel.password) {
-      
-      if(this.filterJoinedUser(this.channel).length > 0) {
-        //weiterleiten
-          
+      if (this.filterJoinedUser(this.channel).length > 0) {
+        this.navigateToDashboard();
       } else {
-        this.channel.joinedUser.push(this.userService.user.uid)
-        this.channelService.saveOtherChannelData(this.channel)
+        this.addUser();
       }
-      
     } else {
-      this.authService.openErrorMessage('Password is not correct!');
+      this.errorMessage();
     }
+  }
+
+  errorMessage() {
+    this.authService.openErrorMessage('Password is not correct!');
+    setTimeout(() => {
+      this.authService.closeErrorMessage();
+    }, 2000);
+  }
+
+  addUser() {
+    this.channel.joinedUser.push(this.userService.user.uid);
+    this.channelService.saveOtherChannelData(this.channel);
+    this.navigateToDashboard();
   }
 
   filterJoinedUser(channel: any) {
     return channel.joinedUser.filter(
       (userUID: string) => userUID == this.userService.user.uid
     );
+  }
+
+  navigateToDashboard() {
+    this.router.navigateByUrl(
+      '/channel/' + this.userService.user.uid + '/dashboard/' + this.channel.ID
+    );
+    this.dialogRef.close();
   }
 }

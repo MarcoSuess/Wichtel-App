@@ -26,14 +26,22 @@ import { SignInComponent } from './sign-in/sign-in.component';
 import { SignUpComponent } from './sign-up/sign-up.component';
 import { AuthService } from './services/auth/auth.service';
 import { ChannelsComponent } from './channels/channels.component';
-import {MatTabsModule} from '@angular/material/tabs';
-import {MatButtonModule} from '@angular/material/button';
+import { MatTabsModule } from '@angular/material/tabs';
+import { MatButtonModule } from '@angular/material/button';
 import { DialogAddChannelComponent } from './dialog-add-channel/dialog-add-channel.component';
 import { DialogJoinChannelComponent } from './dialog-join-channel/dialog-join-channel.component';
-
+import { DashboardComponent } from './dashboard/dashboard.component';
 
 @NgModule({
-  declarations: [AppComponent, SignInComponent, SignUpComponent, ChannelsComponent, DialogAddChannelComponent, DialogJoinChannelComponent],
+  declarations: [
+    AppComponent,
+    SignInComponent,
+    SignUpComponent,
+    ChannelsComponent,
+    DialogAddChannelComponent,
+    DialogJoinChannelComponent,
+    DashboardComponent,
+  ],
   imports: [
     AngularFireModule.initializeApp(environment.firebase),
     AngularFirestoreModule,
@@ -55,7 +63,7 @@ import { DialogJoinChannelComponent } from './dialog-join-channel/dialog-join-ch
     MatSnackBarModule,
     CommonModule,
     MatTabsModule,
-    MatButtonModule
+    MatButtonModule,
   ],
   providers: [AuthService],
   bootstrap: [AppComponent],

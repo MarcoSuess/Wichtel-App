@@ -7,8 +7,6 @@ import * as firebase from 'firebase/compat';
 import { UserService } from '../user/user.service';
 import { Channel } from './channel';
 
-
-
 @Injectable({
   providedIn: 'root',
 })
@@ -16,15 +14,13 @@ export class ChannelService {
   channel: Channel | any;
   currentChannelID: string | undefined;
   allChannels: any;
-  loadChannel : boolean = false;
+  loadChannel: boolean = false;
 
   constructor(
     public afs: AngularFirestore,
     private firestore: AngularFirestore,
     private userService: UserService
   ) {}
-
-  
 
   createNewChannel(channelName: string, password: string) {
     const newID = this.afs.createId();
@@ -37,7 +33,7 @@ export class ChannelService {
       password: password,
       ID: newID,
       joinedUser: [],
-      admin: this.userService.user.uid
+      admin: this.userService.user.uid,
     };
     return channelRef.set(channelData, {
       merge: true,
@@ -52,9 +48,12 @@ export class ChannelService {
       .doc(paramsID)
       .valueChanges()
       .subscribe((channel: any) => {
-        console.log(channel);
-      
-        
+        this.channel.name = channel.name;
+        this.channel.password = channel.password;
+        this.channel.ID = channel.ID;
+        this.channel.joinedUser = channel.joinedUser;
+        this.channel.admin = channel.admin;
+
         this.loadChannel = true;
       });
   }
@@ -65,7 +64,6 @@ export class ChannelService {
       .doc(this.currentChannelID)
       .update(this.channel.toJson());
   }
-
 
   saveOtherChannelData(channel: any) {
     this.firestore
@@ -90,14 +88,8 @@ export class ChannelService {
       .valueChanges()
       .subscribe((channels) => {
         console.log('all Channels', channels);
-        
+
         this.allChannels = channels;
       });
   }
-
- 
-
- 
-
- 
 }

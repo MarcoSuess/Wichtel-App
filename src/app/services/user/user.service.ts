@@ -10,6 +10,7 @@ export class UserService {
   user: User | any;
   allUser: any = [];
   loadCurrentUser: boolean = false;
+  loadAllUser: boolean = false;
 
   constructor(private firestore: AngularFirestore) {}
 
@@ -21,7 +22,7 @@ export class UserService {
       .valueChanges()
       .subscribe((currentUser: any) => {
         console.log('CurrentUser Firestore:', currentUser);
-        
+
         this.user.uid = currentUser.uid;
         this.user.email = currentUser.email;
         this.user.displayName = currentUser.displayName;
@@ -38,7 +39,10 @@ export class UserService {
       .valueChanges()
       .subscribe((user) => {
         this.allUser = user;
-        console.log(user);
+        if (this.allUser.length == user.length) {
+          this.loadAllUser = true;
+          console.log(this.allUser);
+        }
       });
   }
 

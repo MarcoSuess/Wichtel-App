@@ -1,0 +1,64 @@
+.nav-bar {
+  position: absolute;
+  bottom: 16px;
+  right: 0;
+  left: 0;
+
+  display: flex;
+  justify-content: center;
+
+  mat-tab-group {
+    flex-direction: column-reverse !important;
+    width: 100 vw;
+    align-items: center;
+
+    mat-icon {
+      font-size: 32px;
+      color: white;
+    }
+
+    img {
+      height: 40px;
+      width: 40px;
+      object-fit: cover;
+    }
+  }
+}
+
+h2 {
+  display: flex;
+  justify-content: center;
+  color: white;
+  margin-top: 32px;
+  background: #c6875e;
+  width: 100vw;
+  font-family: "Irish Grover", cursive !important;
+}
+
+.group-container {
+  width: 80vw;
+  height: 60vh;
+  display: flex;
+  overflow-y: auto;
+  align-items: center;
+  flex-direction: column;
+}
+
+.user-container {
+  display: flex;
+  width: 80%;
+  align-items: center;
+  background: #e36840;
+  border-radius: 8px;
+
+
+  mat-icon {
+    font-size: 24px !important;
+    color: white;
+    margin-right: 16px;
+  }
+
+  h3 {
+    margin: 0;
+  }
+}

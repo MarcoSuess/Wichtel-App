@@ -1,0 +1,41 @@
+<div *ngIf="channelService.loadChannel">
+  <h2>{{ channelService.channel.name }}</h2>
+</div>
+
+<div class="nav-bar">
+  <mat-tab-group dynamicHeight>
+    <mat-tab>
+      <ng-template mat-tab-label>
+        <mat-icon class="example-tab-icon">groups</mat-icon>
+      </ng-template>
+      <div
+        *ngFor="let user of channelService.channel.joinedUser"
+        class="group-container"
+      >
+        <div class="user-container">
+            <mat-icon class="example-tab-icon">person</mat-icon>
+          <h3>{{ returnUserData(user).displayName }}</h3>
+        </div>
+      </div>
+    </mat-tab>
+
+    <mat-tab>
+      <ng-template mat-tab-label>
+        <img src="assets/gift-icon.png" />
+      </ng-template>
+      <div class="group-container">
+        ziehen
+      </div>
+    
+    </mat-tab>
+
+    <mat-tab>
+      <ng-template mat-tab-label>
+        <mat-icon class="example-tab-icon">account_circle</mat-icon>
+      </ng-template>
+      <div class="group-container">
+        ziehen
+      </div>
+    </mat-tab>
+  </mat-tab-group>
+</div>

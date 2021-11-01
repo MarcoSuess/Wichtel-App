@@ -1,11 +1,12 @@
 import { Component, OnInit } from '@angular/core';
 import { MatDialog } from '@angular/material/dialog';
-import { ActivatedRoute } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
 import { DialogAddChannelComponent } from '../dialog-add-channel/dialog-add-channel.component';
 import { DialogJoinChannelComponent } from '../dialog-join-channel/dialog-join-channel.component';
 import { AuthService } from '../services/auth/auth.service';
 import { ChannelService } from '../services/channel/channel.service';
 import { UserService } from '../services/user/user.service';
+import { Location } from '@angular/common';
 
 @Component({
   selector: 'app-channels',
@@ -18,13 +19,16 @@ export class ChannelsComponent implements OnInit {
     public dialog: MatDialog,
     public userService: UserService,
     public channelService: ChannelService,
-    public authService: AuthService
+    public authService: AuthService,
+    public router: Router,
+    private location: Location
   ) {}
 
   ngOnInit(): void {
     this.route.params.subscribe((params) => {
       this.userService.loadCurrentUserData(params.id);
       this.channelService.loadAllChannels();
+      this.userService.loadAllUserData();
     });
   }
 
@@ -42,5 +46,13 @@ export class ChannelsComponent implements OnInit {
         admin: channel.admin,
       },
     });
+  }
+
+  checkRoute() {
+    return this.router.url.includes('dashboard');
+  }
+
+  goBack() {
+    this.location.back();
   }
 }
