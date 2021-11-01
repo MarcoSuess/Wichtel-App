@@ -28,7 +28,7 @@ export class UserService {
         this.user.displayName = currentUser.displayName;
         this.user.emailVerified = currentUser.emailVerified;
         this.user.online = true;
-
+        this.user.wishes = currentUser.wishes;
         this.loadCurrentUser = true;
       });
   }
@@ -67,11 +67,10 @@ export class UserService {
       uid: user.uid,
       email: user.email,
       displayName: user.displayName,
-      photoURL: user.photoURL,
       emailVerified: user.emailVerified,
       online: user.online,
-      status: user.status,
-      privateChatUID: user.privateChatUID,
+      wishes: user.wishes
+     
     };
   }
 }

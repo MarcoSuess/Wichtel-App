@@ -32,6 +32,7 @@ import { DialogAddChannelComponent } from './dialog-add-channel/dialog-add-chann
 import { DialogJoinChannelComponent } from './dialog-join-channel/dialog-join-channel.component';
 import { DashboardComponent } from './dashboard/dashboard.component';
 import {MatSlideToggleModule} from '@angular/material/slide-toggle';
+import { DialogAddWishComponent } from './dialog-add-wish/dialog-add-wish.component';
 
 @NgModule({
   declarations: [
@@ -42,6 +43,7 @@ import {MatSlideToggleModule} from '@angular/material/slide-toggle';
     DialogAddChannelComponent,
     DialogJoinChannelComponent,
     DashboardComponent,
+    DialogAddWishComponent,
   ],
   imports: [
     AngularFireModule.initializeApp(environment.firebase),

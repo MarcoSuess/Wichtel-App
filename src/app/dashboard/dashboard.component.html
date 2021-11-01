@@ -44,7 +44,19 @@
         <ng-template mat-tab-label>
           <mat-icon class="example-tab-icon">account_circle</mat-icon>
         </ng-template>
-        <div class="group-container">ziehen</div>
+        <div class="group-container profile-section">
+          <h3>
+            {{ userService.user.displayName }}
+          </h3>
+
+          <div class="wish-container">
+
+          </div>
+
+          <button mat-fab color="accent">
+            <mat-icon (click)="openDialogCreateWish()" class="example-tab-icon">post_add</mat-icon>
+          </button>
+        </div>
       </mat-tab>
     </mat-tab-group>
   </div>

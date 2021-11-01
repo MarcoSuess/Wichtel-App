@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { MatDialog } from '@angular/material/dialog';
 import { ActivatedRoute } from '@angular/router';
+import { DialogAddWishComponent } from '../dialog-add-wish/dialog-add-wish.component';
 import { AuthService } from '../services/auth/auth.service';
 import { ChannelService } from '../services/channel/channel.service';
 import { UserService } from '../services/user/user.service';
@@ -66,4 +67,9 @@ export class DashboardComponent implements OnInit {
     }
     return false;
   }
+
+  openDialogCreateWish() {
+    this.dialog.open(DialogAddWishComponent)
+  }
+
 }

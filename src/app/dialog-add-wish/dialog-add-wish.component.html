@@ -1,0 +1,18 @@
+<h2 mat-dialog-title>Add Wish</h2>
+<div mat-dialog-content>
+  <mat-form-field appearance="fill">
+    <mat-label>Enter your Wish </mat-label>
+    <input matInput #wish />
+  </mat-form-field>
+</div>
+<div mat-dialog-actions>
+  <button mat-button mat-dialog-close>Close</button>
+  <button
+    mat-dialog-close
+    *ngIf="wish.value"
+    (click)="saveWish(wish.value)"
+    mat-button
+  >
+    Save
+  </button>
+</div>

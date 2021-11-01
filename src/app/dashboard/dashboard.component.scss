@@ -84,6 +84,31 @@ mat-slide-toggle {
 }
 
 .icon-ready {
+  position: absolute;
+  right: 16px;
+}
+
+.profile-section {
+  margin-bottom: 48px;
+  h3 {
+    margin: 0;
+    color: white;
+    display: flex;
+    justify-content: center;
+    width: 50vw;
+    background: #a12221;
+    border-radius: 8px;
+  }
+
+  button {
     position: absolute;
-    right: 16px;
+    bottom: 8px;
+    right: 0px;
+
+    mat-icon {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+    }
+  }
 }
