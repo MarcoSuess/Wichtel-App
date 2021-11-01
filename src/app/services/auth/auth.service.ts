@@ -91,6 +91,9 @@ export class AuthService {
 
   openErrorMessage(message: any) {
     this._snackBar.open(message);
+    setTimeout(() => {
+      this.closeErrorMessage();
+    }, 1500);
   }
 
   closeErrorMessage() {

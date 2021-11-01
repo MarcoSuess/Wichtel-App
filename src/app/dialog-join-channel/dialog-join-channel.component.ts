@@ -24,7 +24,9 @@ export class DialogJoinChannelComponent implements OnInit {
 
   joinChannel(password: string) {
     if (password == this.channel.password) {
-      if (this.filterJoinedUser(this.channel).length > 0) {
+      if (
+        this.filterJoinedUser(this.channel).userID == this.userService.user.uid
+      ) {
         this.navigateToDashboard();
       } else {
         this.addUser();
@@ -36,24 +38,23 @@ export class DialogJoinChannelComponent implements OnInit {
 
   errorMessage() {
     this.authService.openErrorMessage('Password is not correct!');
-    setTimeout(() => {
-      this.authService.closeErrorMessage();
-    }, 2000);
   }
 
   addUser() {
     this.channel.joinedUser.push({
-      userID:this.userService.user.uid,
-      ready: false
+      userID: this.userService.user.uid,
+      ready: false,
     });
     this.channelService.saveOtherChannelData(this.channel);
     this.navigateToDashboard();
   }
 
   filterJoinedUser(channel: any) {
-    return channel.joinedUser.filter(
-      (userUID: string) => userUID == this.userService.user.uid
+    let getUser = channel.joinedUser.filter(
+      (joinedUser: { userID: any }) =>
+        joinedUser.userID == this.userService.user.uid
     );
+    return getUser[0];
   }
 
   navigateToDashboard() {

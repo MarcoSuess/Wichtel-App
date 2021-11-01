@@ -47,5 +47,23 @@ export class DashboardComponent implements OnInit {
     this.channelService.updateCurrentChannel();
   }
 
-  getUserGift() {}
+  getUserGift() {
+    let arr = this.channelService.channel.joinedUser;
+
+    if (!this.checkFalseExistsArray(arr)) {
+      // ziehen
+    } else {
+      this.authService.openErrorMessage('Not all users are ready');
+    }
+  }
+
+  checkFalseExistsArray(array: any) {
+    for (var k = 0; k < array.length; k++) {
+      if (!array[k].ready) {
+        return true;
+        break;
+      }
+    }
+    return false;
+  }
 }
