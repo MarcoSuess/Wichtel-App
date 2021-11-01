@@ -41,11 +41,4 @@ h1 {
   margin: 16px 0 0 16px !important;
 }
 
-.mat-form-field-empty.mat-form-field-label {
-  color: rgb(255, 255, 255);
-}
 
-.mat-form-field-appearance-legacy.mat-form-field-can-float.mat-form-field-should-float
-  .mat-form-field-label:not(.mat-empty):not(.mat-form-field-empty) {
-  color: white;
-}

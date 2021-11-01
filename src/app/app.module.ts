@@ -29,10 +29,11 @@ import { ChannelsComponent } from './channels/channels.component';
 import {MatTabsModule} from '@angular/material/tabs';
 import {MatButtonModule} from '@angular/material/button';
 import { DialogAddChannelComponent } from './dialog-add-channel/dialog-add-channel.component';
+import { DialogJoinChannelComponent } from './dialog-join-channel/dialog-join-channel.component';
 
 
 @NgModule({
-  declarations: [AppComponent, SignInComponent, SignUpComponent, ChannelsComponent, DialogAddChannelComponent],
+  declarations: [AppComponent, SignInComponent, SignUpComponent, ChannelsComponent, DialogAddChannelComponent, DialogJoinChannelComponent],
   imports: [
     AngularFireModule.initializeApp(environment.firebase),
     AngularFirestoreModule,

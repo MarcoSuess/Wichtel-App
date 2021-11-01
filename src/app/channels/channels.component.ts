@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { MatDialog } from '@angular/material/dialog';
 import { ActivatedRoute } from '@angular/router';
 import { DialogAddChannelComponent } from '../dialog-add-channel/dialog-add-channel.component';
+import { DialogJoinChannelComponent } from '../dialog-join-channel/dialog-join-channel.component';
 import { AuthService } from '../services/auth/auth.service';
 import { ChannelService } from '../services/channel/channel.service';
 import { UserService } from '../services/user/user.service';
@@ -27,7 +28,19 @@ export class ChannelsComponent implements OnInit {
     });
   }
 
-  openDialog() {
+  openDialogCreateChannel() {
     this.dialog.open(DialogAddChannelComponent);
+  }
+
+  openDialogChannelLogin(channel: any) {
+    this.dialog.open(DialogJoinChannelComponent, {
+      data: {
+        name: channel.name,
+        password: channel.password,
+        ID: channel.ID,
+        joinedUser: channel.joinedUser,
+        admin: channel.admin,
+      },
+    });
   }
 }

@@ -10,3 +10,58 @@
   top: 16px;
   color: white;
 }
+
+.allChannels-container {
+  color: white;
+  margin-top: 32px;
+
+  .channelData {
+    width: 80vw;
+    background: #c2c3c5;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    border-radius: 32px;
+    position: relative;
+
+    h3 {
+      margin: 0;
+    }
+  }
+}
+
+h2 {
+  display: flex;
+  justify-content: center;
+  color: white;
+  margin-top: 32px;
+  background: #c6875e;
+  width: 100vw;
+  font-family: "Irish Grover", cursive !important;
+}
+
+.main-container {
+  display: flex;
+  align-items: center;
+  flex-direction: column;
+}
+
+.groups {
+  display: flex;
+  align-items: center;
+  color: #5d9d03;
+  position: absolute;
+  right: 16px;
+
+  p {
+    margin: 0;
+    margin-left: 8px;
+  }
+}
+
+.gift-icon {
+  color: #f10303;   
+  position: absolute;
+  left: 16px;
+
+}

@@ -1,7 +1,15 @@
 <h2 mat-dialog-title>Create Channel</h2>
 <div mat-dialog-content>
-  <input #name placeholder="Channel Name" type="text" />
-  <input #pw placeholder="Channel Password" type="text" />
+  <mat-form-field hintLabel="Max 15 characters" appearance="fill">
+    <mat-label>Channel Name</mat-label>
+    <input matInput #name maxlength="15" placeholder="Name" />
+    <mat-hint align="end">{{ name.value?.length || 0 }}/15</mat-hint>
+  </mat-form-field>
+
+  <mat-form-field appearance="fill">
+    <mat-label>Enter your Password </mat-label>
+    <input matInput #pw placeholder="Password" />
+  </mat-form-field>
 </div>
 <div mat-dialog-actions>
   <button mat-button mat-dialog-close>Close</button>
@@ -9,7 +17,6 @@
     *ngIf="name.value && pw.value"
     (click)="saveChannel(name.value, pw.value)"
     mat-button
-
   >
     Save
   </button>

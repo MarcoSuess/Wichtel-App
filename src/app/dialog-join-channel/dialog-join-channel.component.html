@@ -1,0 +1,11 @@
+<h2 mat-dialog-title>{{channel.name}}</h2>
+<div mat-dialog-content>
+  <mat-form-field appearance="fill">
+    <mat-label>Enter your Password </mat-label>
+    <input matInput #pw placeholder="Password" />
+  </mat-form-field>
+</div>
+<div mat-dialog-actions>
+  <button mat-button mat-dialog-close>Close</button>
+  <button (click)="joinChannel(pw.value)" mat-button>Join</button>
+</div>

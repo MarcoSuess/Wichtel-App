@@ -1,18 +1,33 @@
-<div *ngIf="userService.loadCurrentUser">
+<div class="main-container" *ngIf="userService.loadCurrentUser">
   <button
     class="add-channel-btn"
     mat-fab
     color="primary"
     aria-label="Example icon button with a delete icon"
-    (click)="openDialog()"
+    (click)="openDialogCreateChannel()"
   >
     <mat-icon>add</mat-icon>
   </button>
 
-  <mat-icon (click)="authService.signOut()" class="material-icons-outlined"> power_settings_new </mat-icon>
+  <mat-icon (click)="authService.signOut()" class="material-icons-outlined">
+    power_settings_new
+  </mat-icon>
 
+  <h2>Channels</h2>
   <div *ngIf="channelService.allChannels?.length > 0">
-    <h1>test</h1>
-  </div>
+    <div
+      class="allChannels-container"
+      *ngFor="let channel of channelService.allChannels"
+    >
+      <div (click)="openDialogChannelLogin(channel)" class="channelData">
+        <mat-icon class="gift-icon">card_giftcard</mat-icon>
 
+        <h3>{{ channel.name }}</h3>
+        <div class="groups">
+          <mat-icon>groups</mat-icon>
+          <p>{{ channel.joinedUser.length }}</p>
+        </div>
+      </div>
+    </div>
+  </div>
 </div>

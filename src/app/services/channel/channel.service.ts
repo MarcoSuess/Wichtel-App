@@ -66,11 +66,31 @@ export class ChannelService {
       .update(this.channel.toJson());
   }
 
+
+  saveOtherChannelData(channel: any) {
+    this.firestore
+      .collection('channels')
+      .doc(channel.ID)
+      .update(this.OtherUserToJson(channel));
+  }
+
+  OtherUserToJson(channel: any) {
+    return {
+      name: channel.name,
+      password: channel.password,
+      ID: channel.ID,
+      joinedUser: channel.joinedUser,
+      admin: channel.admin,
+    };
+  }
+
   loadAllChannels() {
     this.firestore
       .collection('channels')
       .valueChanges()
       .subscribe((channels) => {
+        console.log('all Channels', channels);
+        
         this.allChannels = channels;
       });
   }
