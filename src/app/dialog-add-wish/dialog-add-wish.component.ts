@@ -13,19 +13,33 @@ export class DialogAddWishComponent implements OnInit {
     private channelService: ChannelService
   ) {}
 
-  ngOnInit(): void {}
+  ngOnInit(): void {
+    
+  }
 
   saveWish(wish: any) {
-    if (
-      this.filterWishUser().channelID == this.channelService.currentChannelID
-    ) {
-      this.filterWishUser().wish.push(wish);
+  
+    
+    if (this.userService.user.wishes.length > 0) {
+      if (
+        this.filterWishUser().channelID == this.channelService.currentChannelID
+      ) {
+        this.filterWishUser().wish.push(wish);
+        this.userService.saveUserData();
+      } else {
+        this.createNewWish(wish);
+      }
     } else {
-      this.userService.user.wishes.push({
-        channelID: this.channelService.currentChannelID,
-        wish: [wish],
-      });
+      this.createNewWish(wish);
     }
+  }
+
+  createNewWish(wish: string) {
+    this.userService.user.wishes.push({
+      channelID: this.channelService.currentChannelID,
+      wish: [wish],
+    });
+    this.userService.saveUserData();
   }
 
   filterWishUser() {

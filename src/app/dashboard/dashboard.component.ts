@@ -65,7 +65,7 @@ export class DashboardComponent implements OnInit {
         break;
       }
     }
-    return false;
+    return false; 
   }
 
   openDialogCreateWish() {

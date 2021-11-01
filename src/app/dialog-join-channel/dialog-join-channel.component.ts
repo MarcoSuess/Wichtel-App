@@ -25,6 +25,7 @@ export class DialogJoinChannelComponent implements OnInit {
   joinChannel(password: string) {
     if (password == this.channel.password) {
       if (
+        this.channel.joinedUser.length > 0 &&
         this.filterJoinedUser(this.channel).userID == this.userService.user.uid
       ) {
         this.navigateToDashboard();
