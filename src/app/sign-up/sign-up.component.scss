@@ -1,59 +1,54 @@
 .main-wrapper {
-	height: 100%;
-    display: flex;
-    justify-content: center;
-    align-items: center;
+  position: absolute;
+  right: 0;
+  left: 0;
+  top: 0;
+  bottom: 0;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  overflow: hidden;
 }
 
 .positronx {
-	text-decoration: none;
-	color: #ffffff;
+  text-decoration: none;
+  color: #ffffff;
 }
 
 .box {
-	position: relative;
-	top: 0;
-	opacity: 1;
-	float: left;
-	padding: 60px 50px 40px 50px;
-	width: 100%;
-	background: #fff;
-	border-radius: 10px;
-	transform: scale(1);
-	-webkit-transform: scale(1);
-	-ms-transform: scale(1);
-	z-index: 5;
-	max-width: 330px;
-	transform: translateX(0%) rotate(0deg);
-	animation: slideLeft 0.64s ease-in-out;
 
+  opacity: 1;
+  float: left;
+  padding: 60px 50px 40px 50px;
+  width: 100%;
+  background: #fff;
+  border-radius: 10px;
+  transform: scale(1);
+  -webkit-transform: scale(1);
+  -ms-transform: scale(1);
+  z-index: 5;
+  max-width: 330px;
+  transform: translateX(0%) rotate(0deg);
+  animation: slideLeft 0.64s ease-in-out;
 }
-
 
 @keyframes slideLeft {
+  0% {
+    transform: translateX(90%) rotate(0deg);
+  }
 
-	0% {
-		transform: translateX(200%) rotate(0deg);
-	}
-
-
-
-	100% {
-		transform: translateX(0%) rotate(0deg);
-
-	}
+  100% {
+    transform: translateX(0%) rotate(0deg);
+  }
 }
 
-
-
-.box.back {
-	transform: scale(.95);
-	-webkit-transform: scale(.95);
-	-ms-transform: scale(.95);
-	top: -20px;
-	opacity: .8;
-	z-index: -1;
-}
+/* .box.back {
+  transform: scale(0.95);
+  -webkit-transform: scale(0.95);
+  -ms-transform: scale(0.95);
+  opacity: 0.8;
+  z-index: -1;
+} */
 
 /* .box:before {
 	content: "";
@@ -71,66 +66,62 @@
 } */
 
 .main-wrapper .example-form {
-	min-width: 100%;
-	max-width: 300px;
-	width: 100%;
+  min-width: 100%;
+  max-width: 300px;
+  width: 100%;
 }
 
 .main-wrapper .example-full-width,
 .main-wrapper .btn-block {
-	width: 100%;
+  width: 100%;
 }
 
 .main-wrapper mat-card-header {
-	text-align: center;
-	width: 100%;
-	display: block;
-	font-weight: 700;
+  text-align: center;
+  width: 100%;
+  display: block;
+  font-weight: 700;
 }
 
 .main-wrapper mat-card-header mat-card-title {
-	font-size: 30px;
-	margin: 0;
+  font-size: 30px;
+  margin: 0;
 }
 
 .main-wrapper .mat-card {
-	padding: 45px 70px 55px;
+  padding: 45px 70px 55px;
 }
 
 .main-wrapper .mat-stroked-button {
-	border: 1px solid currentColor;
-	line-height: 54px;
-	background: #FFF7FA;
+  border: 1px solid currentColor;
+  line-height: 54px;
+  background: #fff7fa;
 }
 
 button {
-
-	background: #3a6325;
-    color: white;
-    height: 50px;
-    border: none;
-	cursor: pointer;
-	&:hover {
-
-		opacity: 0.7;
-	}
-
+  background: #3a6325;
+  color: white;
+  height: 50px;
+  border: none;
+  cursor: pointer;
+  &:hover {
+    opacity: 0.7;
+  }
 }
 
 .main-wrapper .mat-form-field-appearance-legacy .mat-form-field-infix {
-	padding: 0.8375em 0;
+  padding: 0.8375em 0;
 }
 
 p.outside-message {
-    width: 95%;
-    text-align: start;
-	margin-top: 32px;
-	font-weight: 500;
+  width: 95%;
+  text-align: start;
+  margin-top: 32px;
+  font-weight: 500;
 
-
-	a {
-		text-decoration: none;
-		cursor: pointer;
-		color: #3a6325;;
-	} 
+  a {
+    text-decoration: none;
+    cursor: pointer;
+    color: #3a6325;
+  }
 }

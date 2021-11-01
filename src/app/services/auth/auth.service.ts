@@ -9,7 +9,8 @@ import { FormControl, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
 import { getAuth, signOut } from 'firebase/auth';
 import { doc, getDoc } from 'firebase/firestore';
-import {MatSnackBar} from '@angular/material/snack-bar';
+import { MatSnackBar } from '@angular/material/snack-bar';
+import { UserService } from '../user/user.service';
 
 @Injectable({
   providedIn: 'root',
@@ -30,6 +31,7 @@ export class AuthService {
     public ngZone: NgZone, // NgZone service to remove outside scope warning
     private firestore: AngularFirestore,
     private _snackBar: MatSnackBar,
+    private userService: UserService
   ) {}
 
   getErrorMessageEmail() {
@@ -125,8 +127,8 @@ export class AuthService {
       .then((result) => {
         console.log(result);
         this.router.navigateByUrl('/');
-        /* this.userService.user.online = false;
-        this.userService.saveUserData(); */
+        this.userService.user.online = false;
+        this.userService.saveUserData();
       })
       .catch((error) => {
         const errorCode = error.code;

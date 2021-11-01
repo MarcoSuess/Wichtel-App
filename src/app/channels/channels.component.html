@@ -9,10 +9,10 @@
     <mat-icon>add</mat-icon>
   </button>
 
-  <mat-icon class="material-icons-outlined"> power_settings_new </mat-icon>
+  <mat-icon (click)="authService.signOut()" class="material-icons-outlined"> power_settings_new </mat-icon>
 
-  <div>
-      
+  <div *ngIf="channelService.allChannels?.length > 0">
+    <h1>test</h1>
   </div>
 
 </div>
