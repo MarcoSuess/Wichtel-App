@@ -13,29 +13,35 @@
         class="group-container"
       >
         <div class="user-container">
-            <mat-icon class="example-tab-icon">person</mat-icon>
-          <h3>{{ returnUserData(user).displayName }}</h3>
+          <mat-icon class="example-tab-icon icon-person">person</mat-icon>
+          <h3>{{ returnUserData(user.userID).displayName }}</h3>
+          <mat-icon *ngIf="user.ready" class="example-tab-icon icon-ready"
+            >thumb_up</mat-icon
+          >
+          <mat-icon *ngIf="!user.ready" class="example-tab-icon icon-ready"
+            >thumb_down</mat-icon
+          >
         </div>
       </div>
     </mat-tab>
 
     <mat-tab>
       <ng-template mat-tab-label>
-        <img src="assets/gift-icon.png" />
+        <img (click)="getUserGift()" src="assets/gift-icon.png" />
       </ng-template>
-      <div class="group-container">
-        ziehen
+      <div class="group-container gift-container">
+        <img src="assets/gift-icon.png" />
+        <mat-slide-toggle (change)="checkToggle($event)"
+          >Ready ?
+        </mat-slide-toggle>
       </div>
-    
     </mat-tab>
 
     <mat-tab>
       <ng-template mat-tab-label>
         <mat-icon class="example-tab-icon">account_circle</mat-icon>
       </ng-template>
-      <div class="group-container">
-        ziehen
-      </div>
+      <div class="group-container">ziehen</div>
     </mat-tab>
   </mat-tab-group>
 </div>

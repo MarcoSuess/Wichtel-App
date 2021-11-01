@@ -32,4 +32,20 @@ export class DashboardComponent implements OnInit {
 
     return getUser[0];
   }
+
+  filterUserInChannel() {
+    let getUser = this.channelService.channel.joinedUser.filter(
+      (joinedUser: { userID: any }) =>
+        joinedUser.userID == this.userService.user.uid
+    );
+    return getUser[0];
+  }
+
+  checkToggle(event: any) {
+    console.log(this.filterUserInChannel().ready);
+    this.filterUserInChannel().ready = event.checked;
+    this.channelService.updateCurrentChannel();
+  }
+
+  getUserGift() {}
 }

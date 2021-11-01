@@ -48,17 +48,40 @@ h2 {
   display: flex;
   width: 80%;
   align-items: center;
+  justify-content: center;
   background: #e36840;
   border-radius: 8px;
-
+  position: relative;
 
   mat-icon {
     font-size: 24px !important;
     color: white;
-    margin-right: 16px;
   }
 
   h3 {
     margin: 0;
   }
+}
+
+.gift-container {
+  img {
+    margin-top: 32px;
+    height: 180px !important;
+    width: 180px !important;
+    object-fit: cover;
+  }
+}
+
+mat-slide-toggle {
+  margin-top: 128px;
+}
+
+.icon-person {
+  position: absolute;
+  left: 16px;
+}
+
+.icon-ready {
+    position: absolute;
+    right: 16px;
 }

@@ -31,6 +31,7 @@ import { MatButtonModule } from '@angular/material/button';
 import { DialogAddChannelComponent } from './dialog-add-channel/dialog-add-channel.component';
 import { DialogJoinChannelComponent } from './dialog-join-channel/dialog-join-channel.component';
 import { DashboardComponent } from './dashboard/dashboard.component';
+import {MatSlideToggleModule} from '@angular/material/slide-toggle';
 
 @NgModule({
   declarations: [
@@ -64,6 +65,7 @@ import { DashboardComponent } from './dashboard/dashboard.component';
     CommonModule,
     MatTabsModule,
     MatButtonModule,
+    MatSlideToggleModule
   ],
   providers: [AuthService],
   bootstrap: [AppComponent],

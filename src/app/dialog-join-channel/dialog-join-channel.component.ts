@@ -42,7 +42,10 @@ export class DialogJoinChannelComponent implements OnInit {
   }
 
   addUser() {
-    this.channel.joinedUser.push(this.userService.user.uid);
+    this.channel.joinedUser.push({
+      userID:this.userService.user.uid,
+      ready: false
+    });
     this.channelService.saveOtherChannelData(this.channel);
     this.navigateToDashboard();
   }
