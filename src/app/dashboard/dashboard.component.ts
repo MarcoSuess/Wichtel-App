@@ -12,6 +12,8 @@ import { UserService } from '../services/user/user.service';
   styleUrls: ['./dashboard.component.scss'],
 })
 export class DashboardComponent implements OnInit {
+  loadGift: boolean = false;
+
   constructor(
     private route: ActivatedRoute,
     public dialog: MatDialog,
@@ -42,6 +44,14 @@ export class DashboardComponent implements OnInit {
     return getUser[0];
   }
 
+  filterUserWishes() {
+    let getUser = this.userService.user.wishes.filter(
+      (wishes: { channelID: any }) =>
+        wishes.channelID == this.channelService.currentChannelID
+    );
+    return getUser[0];
+  }
+
   checkToggle(event: any) {
     console.log(this.filterUserInChannel().ready);
     this.filterUserInChannel().ready = event.checked;
@@ -50,15 +60,29 @@ export class DashboardComponent implements OnInit {
 
   getUserGift() {
     let arr = this.channelService.channel.joinedUser;
+    let randomUserIndex = this.getRandomUserIndex(arr);
 
-    if (!this.checkFalseExistsArray(arr)) {
-      // ziehen
+    console.log(arr[randomUserIndex]);
+
+    if (!this.checkFalseExistsArray(arr) ) {
+      /*   // getRandom USer */
+      this.loadGift = true;
+      if (arr[randomUserIndex].userID !== this.userService.user.uid) {
+        this.filterUserWishes().draggedUser = arr[randomUserIndex].userID;
+        arr.splice(randomUserIndex, 1);
+        this.channelService.updateCurrentChannel();
+        this.userService.saveUserData();
+        this.loadGift = false;
+      } else  {
+        this.authService.openErrorMessage('Try Again');
+      }
     } else {
       this.authService.openErrorMessage('Not all users are ready');
     }
   }
 
   checkFalseExistsArray(array: any) {
+    if(array)
     for (var k = 0; k < array.length; k++) {
       if (!array[k].ready) {
         return true;
@@ -83,5 +107,9 @@ export class DashboardComponent implements OnInit {
   deleteWish(index: any) {
     this.filterWishUser().wish.splice(index, 1);
     this.userService.saveUserData();
+  }
+
+  getRandomUserIndex(arr: any) {
+    return Math.floor(Math.random() * arr.length);
   }
 }

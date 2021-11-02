@@ -20,13 +20,15 @@ export class DialogJoinChannelComponent implements OnInit {
     private dialogRef: MatDialogRef<DialogJoinChannelComponent>
   ) {}
 
-  ngOnInit(): void {}
+  ngOnInit(): void {
+    console.log(this.channel);
+  }
 
   joinChannel(password: string) {
     if (password == this.channel.password) {
       if (
-        this.channel.joinedUser.length > 0 &&
-        this.filterJoinedUser(this.channel).userID == this.userService.user.uid
+        this.channel.allUsers.length > 0 &&
+        this.filterJoinedUser(this.channel) == this.userService.user.uid
       ) {
         this.navigateToDashboard();
       } else {
@@ -46,10 +48,11 @@ export class DialogJoinChannelComponent implements OnInit {
       userID: this.userService.user.uid,
       ready: false,
     });
-      this.userService.user.wishes.push({
+    this.channel.allUsers.push(this.userService.user.uid);
+    this.userService.user.wishes.push({
       channelID: this.channel.ID,
       wish: [],
-      draggedUser: ''
+      draggedUser: '',
     });
     this.userService.saveUserData();
     this.channelService.saveOtherChannelData(this.channel);
@@ -57,10 +60,10 @@ export class DialogJoinChannelComponent implements OnInit {
   }
 
   filterJoinedUser(channel: any) {
-    let getUser = channel.joinedUser.filter(
-      (joinedUser: { userID: any }) =>
-        joinedUser.userID == this.userService.user.uid
+    let getUser = channel.allUsers.filter(
+      (userID: string) => userID == this.userService.user.uid
     );
+
     return getUser[0];
   }
 

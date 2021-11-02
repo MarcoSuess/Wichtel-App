@@ -44,6 +44,7 @@ export class ChannelsComponent implements OnInit {
         ID: channel.ID,
         joinedUser: channel.joinedUser,
         admin: channel.admin,
+        allUsers : channel.allUsers
       },
     });
   }

@@ -1,3 +1,4 @@
+import { ThrowStmt } from '@angular/compiler';
 import { Injectable } from '@angular/core';
 import {
   AngularFirestore,
@@ -34,6 +35,7 @@ export class ChannelService {
       ID: newID,
       joinedUser: [],
       admin: this.userService.user.uid,
+      allUsers: []
     };
     return channelRef.set(channelData, {
       merge: true,
@@ -53,7 +55,7 @@ export class ChannelService {
         this.channel.ID = channel.ID;
         this.channel.joinedUser = channel.joinedUser;
         this.channel.admin = channel.admin;
-
+        this.channel.allUsers = channel.allUsers;
         this.loadChannel = true;
       });
   }
@@ -79,6 +81,7 @@ export class ChannelService {
       ID: channel.ID,
       joinedUser: channel.joinedUser,
       admin: channel.admin,
+      allUsers : channel.allUsers
     };
   }
 

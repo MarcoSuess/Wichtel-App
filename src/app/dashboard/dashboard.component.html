@@ -30,13 +30,33 @@
         <ng-template mat-tab-label>
           <img src="assets/gift-icon.png" />
         </ng-template>
-        <div class="group-container gift-container">
-          <img (click)="getUserGift()" src="assets/gift-icon.png" />
+
+        <!--    gift -->
+        <div
+          *ngIf="!filterWishUser().draggedUser"
+          class="group-container gift-container"
+        >
+          <img
+            *ngIf="!loadGift"
+            (click)="getUserGift()"
+            src="assets/gift-icon.png"
+          />
+          <mat-spinner [color]="'warn'" *ngIf="loadGift"></mat-spinner>
           <mat-slide-toggle
-            [checked]="filterUserInChannel().ready"
+            *ngIf="checkFalseExistsArray(channelService.channel?.joinedUser)"
+            [checked]="filterUserInChannel()?.ready"
             (change)="checkToggle($event)"
             >Ready ?
           </mat-slide-toggle>
+        </div>
+
+        <!--   getUserGift -->
+
+        <div *ngIf="filterWishUser().draggedUser" class="group-container">
+
+          <h1>TEst</h1>
+
+
         </div>
       </mat-tab>
 
@@ -48,8 +68,6 @@
           {{ userService.user.displayName }}
         </h3>
         <div class="group-container profile-section">
-       
-
           <img
             class="wishList-img"
             *ngIf="filterWishUser().wish.length <= 0"
