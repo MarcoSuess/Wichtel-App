@@ -65,11 +65,23 @@ export class DashboardComponent implements OnInit {
         break;
       }
     }
-    return false; 
+    return false;
   }
 
   openDialogCreateWish() {
-    this.dialog.open(DialogAddWishComponent)
+    this.dialog.open(DialogAddWishComponent);
   }
 
+  filterWishUser() {
+    let getUser = this.userService.user.wishes.filter(
+      (wishes: { channelID: any }) =>
+        wishes.channelID == this.channelService.currentChannelID
+    );
+    return getUser[0];
+  }
+
+  deleteWish(index: any) {
+    this.filterWishUser().wish.splice(index, 1);
+    this.userService.saveUserData();
+  }
 }

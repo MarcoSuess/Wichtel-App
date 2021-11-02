@@ -90,15 +90,6 @@ mat-slide-toggle {
 
 .profile-section {
   margin-bottom: 48px;
-  h3 {
-    margin: 0;
-    color: white;
-    display: flex;
-    justify-content: center;
-    width: 50vw;
-    background: #a12221;
-    border-radius: 8px;
-  }
 
   button {
     position: absolute;
@@ -111,4 +102,53 @@ mat-slide-toggle {
       align-items: center;
     }
   }
+}
+
+.wish-container {
+  background: #70a240;
+  width: 64vw;
+  margin-top: 16px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  border-radius: 16px;
+  position: relative;
+
+  h4 {
+    margin: 0;
+    color: white;
+  }
+
+  img {
+    height: 32px !important;
+    width: 32px !important;
+    object-fit: cover;
+    position: absolute;
+    left: 16px;
+  }
+
+  mat-icon {
+    position: absolute;
+    right: 16px;
+    font-size: 24px !important;
+  }
+}
+
+.wishList-img {
+  height: 100% !important;
+  width: 100% !important;
+  margin-top: 32px;
+  object-fit: cover;
+  opacity: 0.9;
+  border-radius: 32px;
+  position: absolute;   
+}
+
+.userName {
+  margin: 0;
+  color: white;
+  display: flex;
+  justify-content: center;
+  background: #a12221;
+  border-radius: 8px;
 }

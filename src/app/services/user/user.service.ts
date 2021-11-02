@@ -1,6 +1,5 @@
 import { Injectable } from '@angular/core';
 import { AngularFirestore } from '@angular/fire/compat/firestore';
-import { getAuth } from 'firebase/auth';
 import { User } from './user';
 
 @Injectable({
@@ -29,6 +28,7 @@ export class UserService {
         this.user.emailVerified = currentUser.emailVerified;
         this.user.online = true;
         this.user.wishes = currentUser.wishes;
+        
         this.loadCurrentUser = true;
       });
   }
@@ -69,8 +69,7 @@ export class UserService {
       displayName: user.displayName,
       emailVerified: user.emailVerified,
       online: user.online,
-      wishes: user.wishes
-     
+      wishes: user.wishes,
     };
   }
 }

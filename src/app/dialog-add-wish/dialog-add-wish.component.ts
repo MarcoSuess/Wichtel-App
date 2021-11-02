@@ -1,3 +1,4 @@
+import { analyzeAndValidateNgModules } from '@angular/compiler';
 import { Component, OnInit } from '@angular/core';
 import { ChannelService } from '../services/channel/channel.service';
 import { UserService } from '../services/user/user.service';
@@ -13,33 +14,15 @@ export class DialogAddWishComponent implements OnInit {
     private channelService: ChannelService
   ) {}
 
-  ngOnInit(): void {
-    
-  }
+  ngOnInit(): void {}
 
   saveWish(wish: any) {
-  
-    
-    if (this.userService.user.wishes.length > 0) {
-      if (
-        this.filterWishUser().channelID == this.channelService.currentChannelID
-      ) {
-        this.filterWishUser().wish.push(wish);
-        this.userService.saveUserData();
-      } else {
-        this.createNewWish(wish);
-      }
-    } else {
-      this.createNewWish(wish);
+    if (
+      this.filterWishUser().channelID == this.channelService.currentChannelID
+    ) {
+      this.filterWishUser().wish.push(wish);
+      this.userService.saveUserData();
     }
-  }
-
-  createNewWish(wish: string) {
-    this.userService.user.wishes.push({
-      channelID: this.channelService.currentChannelID,
-      wish: [wish],
-    });
-    this.userService.saveUserData();
   }
 
   filterWishUser() {

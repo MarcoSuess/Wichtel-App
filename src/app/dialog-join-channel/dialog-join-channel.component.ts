@@ -46,6 +46,12 @@ export class DialogJoinChannelComponent implements OnInit {
       userID: this.userService.user.uid,
       ready: false,
     });
+      this.userService.user.wishes.push({
+      channelID: this.channel.ID,
+      wish: [],
+      draggedUser: ''
+    });
+    this.userService.saveUserData();
     this.channelService.saveOtherChannelData(this.channel);
     this.navigateToDashboard();
   }
