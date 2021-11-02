@@ -141,14 +141,20 @@ mat-slide-toggle {
   object-fit: cover;
   opacity: 0.9;
   border-radius: 32px;
-  position: absolute;   
+  position: absolute;
 }
 
-.userName {
-  margin: 0;
-  color: white;
+
+.userTitle {
+  position: relative;
   display: flex;
   justify-content: center;
   background: #a12221;
   border-radius: 8px;
+  width: 100%;
+
+  h3 {
+    margin: 0;
+    color: white;
+  }
 }

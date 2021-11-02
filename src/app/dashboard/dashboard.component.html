@@ -53,10 +53,34 @@
         <!--   getUserGift -->
 
         <div *ngIf="filterWishUser().draggedUser" class="group-container">
+          <div class="userTitle">
+            <mat-icon class="example-tab-icon icon-person">person</mat-icon>
+            <h3>
+              {{ filterOhterUserData().displayName }}
+            </h3>
+          </div>
 
-          <h1>TEst</h1>
+          <div class="group-container profile-section">
+            <img
+              class="wishList-img"
+              *ngIf="
+                filterOhterUserWishes(filterOhterUserData()).wish.length <= 0
+              "
+              src="assets/wish-list.png"
+            />
 
+            <div
+              *ngFor="
+                let wish of filterOhterUserWishes(filterOhterUserData()).wish;
+                let i = index
+              "
+              class="wish-container"
+            >
+              <h4>{{ wish }}</h4>
 
+              <img src="assets/gift-icon.png" />
+            </div>
+          </div>
         </div>
       </mat-tab>
 
@@ -64,9 +88,14 @@
         <ng-template mat-tab-label>
           <mat-icon class="example-tab-icon">account_circle</mat-icon>
         </ng-template>
-        <h3 class="userName">
-          {{ userService.user.displayName }}
-        </h3>
+
+        <div class="userTitle">
+          <mat-icon class="example-tab-icon icon-person">person</mat-icon>
+          <h3>
+            {{ userService.user.displayName }}
+          </h3>
+        </div>
+
         <div class="group-container profile-section">
           <img
             class="wishList-img"

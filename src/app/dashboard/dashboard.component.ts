@@ -44,6 +44,21 @@ export class DashboardComponent implements OnInit {
     return getUser[0];
   }
 
+  filterOhterUserData() {
+    let otherUser = this.filterUserWishes().draggedUser;
+    let getOtherUserData = this.returnUserData(otherUser);
+
+    return getOtherUserData;
+  }
+
+  filterOhterUserWishes(user: any) {
+    let getUser = user.wishes.filter(
+      (wishes: { channelID: any }) =>
+        wishes.channelID == this.channelService.currentChannelID
+    );
+    return getUser[0];
+  }
+
   filterUserWishes() {
     let getUser = this.userService.user.wishes.filter(
       (wishes: { channelID: any }) =>
@@ -64,7 +79,7 @@ export class DashboardComponent implements OnInit {
 
     console.log(arr[randomUserIndex]);
 
-    if (!this.checkFalseExistsArray(arr) ) {
+    if (!this.checkFalseExistsArray(arr)) {
       /*   // getRandom USer */
       this.loadGift = true;
       if (arr[randomUserIndex].userID !== this.userService.user.uid) {
@@ -73,7 +88,7 @@ export class DashboardComponent implements OnInit {
         this.channelService.updateCurrentChannel();
         this.userService.saveUserData();
         this.loadGift = false;
-      } else  {
+      } else {
         this.authService.openErrorMessage('Try Again');
       }
     } else {
@@ -82,13 +97,13 @@ export class DashboardComponent implements OnInit {
   }
 
   checkFalseExistsArray(array: any) {
-    if(array)
-    for (var k = 0; k < array.length; k++) {
-      if (!array[k].ready) {
-        return true;
-        break;
+    if (array)
+      for (var k = 0; k < array.length; k++) {
+        if (!array[k].ready) {
+          return true;
+          break;
+        }
       }
-    }
     return false;
   }
 
