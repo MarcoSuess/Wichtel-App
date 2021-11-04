@@ -16,7 +16,6 @@
 }
 
 .box {
-
   opacity: 1;
   float: left;
   padding: 60px 50px 40px 50px;
@@ -70,6 +69,7 @@
   min-width: 100%;
   max-width: 300px;
   width: 100%;
+  
 }
 
 .main-wrapper .example-full-width,
@@ -97,6 +97,7 @@
   border: 1px solid currentColor;
   line-height: 54px;
   background: #fff7fa;
+  color: #ff4081;
 }
 
 button {
@@ -121,9 +122,10 @@ p.outside-message {
   margin-top: 32px;
   font-weight: 500;
 
+
   a {
     text-decoration: none;
     cursor: pointer;
-    color: #3a6325;
+    color: #000000;
   }
 }

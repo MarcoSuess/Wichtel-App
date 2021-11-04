@@ -81,8 +81,9 @@ export class DashboardComponent implements OnInit {
 
     if (!this.checkFalseExistsArray(arr)) {
       /*   // getRandom USer */
-      this.loadGift = true;
+    
       if (arr[randomUserIndex].userID !== this.userService.user.uid) {
+        this.loadGift = true;
         this.filterUserWishes().draggedUser = arr[randomUserIndex].userID;
         arr.splice(randomUserIndex, 1);
         this.channelService.updateCurrentChannel();

@@ -17,7 +17,7 @@
               [formControl]="authService.email"
               required
             />
-            <mat-error *ngIf="authService.email.invalid">{{
+            <mat-error  *ngIf="authService.email.invalid">{{
               authService.getErrorMessageEmail()
             }}</mat-error>
           </mat-form-field>

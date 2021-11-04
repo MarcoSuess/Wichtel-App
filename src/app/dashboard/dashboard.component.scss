@@ -7,6 +7,10 @@
   display: flex;
   justify-content: center;
 
+  @media (max-height: 630px) {
+    position: relative;
+  }
+
   mat-tab-group {
     flex-direction: column-reverse !important;
     width: 100 vw;
@@ -20,7 +24,7 @@
     img {
       height: 40px;
       width: 40px;
-      object-fit: cover;
+      object-fit: contain;
     }
   }
 }
@@ -30,7 +34,8 @@ h2 {
   justify-content: center;
   color: white;
   margin-top: 32px;
-  background: #c6875e;
+ 
+  background: #5a9122;
   width: 100vw;
   font-family: "Irish Grover", cursive !important;
 }
@@ -49,7 +54,7 @@ h2 {
   width: 80%;
   align-items: center;
   justify-content: center;
-  background: #e36840;
+  background: #a4251a;
   border-radius: 8px;
   position: relative;
   margin-top: 16px;
@@ -144,7 +149,6 @@ mat-slide-toggle {
   position: absolute;
 }
 
-
 .userTitle {
   position: relative;
   display: flex;
@@ -152,6 +156,7 @@ mat-slide-toggle {
   background: #a12221;
   border-radius: 8px;
   width: 100%;
+  margin-top: 16px;
 
   h3 {
     margin: 0;
