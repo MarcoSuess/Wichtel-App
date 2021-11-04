@@ -53,3 +53,8 @@ input:-webkit-autofill:focus {
 input[data-autocompleted] {
     background-color: transparent !important;
 }
+
+mat-dialog-container {
+  background: #de5b5be3 !important;
+  color: white !important;
+}
