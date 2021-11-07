@@ -82,7 +82,7 @@ export class DashboardComponent implements OnInit {
 
     console.log(arr[randomUserIndex]);
 
-    if (!this.checkFalseExistsArray(arr)) {
+    if (!this.channelService.channel.open) {
       /*   // getRandom USer */
     
       if (arr[randomUserIndex].userID !== this.userService.user.uid) {

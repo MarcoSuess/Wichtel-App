@@ -68,7 +68,7 @@
             <h4>{{ wish }}</h4>
 
             
-            <mat-icon (click)="deleteWish(i)" class="example-tab-icon"
+            <mat-icon (click)="deleteWish(i)" class="example-tab-icon trash-icon"
               >delete</mat-icon
             >
           </div>
@@ -101,7 +101,7 @@
           <button
             *ngIf="
               userService.user.uid == channelService.channel.admin &&
-              channelService.channel.open && channelService.channel.allUsers.length > 1"
+              channelService.channel.open && !this.checkFalseExistsArray(channelService.channel.joinedUser)"
             class="btn-start"
             mat-raised-button
             color="warn"

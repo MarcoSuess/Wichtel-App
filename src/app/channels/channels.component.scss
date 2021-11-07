@@ -16,6 +16,7 @@
   margin-top: 32px;
 
   .channelData {
+    cursor: pointer;
     width: 80vw;
     background: #a4251a;
     display: flex;
@@ -23,6 +24,10 @@
     align-items: center;
     border-radius: 32px;
     position: relative;
+
+    &:hover {
+      opacity: 0.4;
+    }
 
     h3 {
       margin: 0;
@@ -68,4 +73,10 @@ h2 {
 
 mat-icon {
   z-index: 2;
+  cursor: pointer;
+
+
+  &:hover {
+    opacity: 0.4;
+  }
 }
