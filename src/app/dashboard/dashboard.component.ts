@@ -77,25 +77,17 @@ export class DashboardComponent implements OnInit {
   }
 
   getUserGift() {
-    let test = this.userService.allUser.filter(
-      (allUser: { wishes: any }) =>
-        allUser.wishes.channelID == this.channelService.currentChannelID
-    );
-
-    console.log(test);
-
     let arr = this.channelService.channel.joinedUser;
     let randomUserIndex = this.getRandomUserIndex(arr);
 
-    console.log(arr[randomUserIndex]);
-
     if (!this.channelService.channel.open) {
       /*   // getRandom USer */
-
+    
       if (
         arr[randomUserIndex].userID !== this.userService.user.uid &&
-        this.filterUserWishes().forbiddenUser
+        arr[randomUserIndex].userID !== this.filterUserWishes().forbiddenUser
       ) {
+        console.log(this.filterUserWishes());
         this.loadGift = true;
         this.filterUserWishes().draggedUser = arr[randomUserIndex].userID;
         arr.splice(randomUserIndex, 1);
@@ -110,7 +102,7 @@ export class DashboardComponent implements OnInit {
       } else {
         this.authService.openErrorMessage('Try Again');
       }
-    } else if (this.channelService.channel.allUsers.length == 2) {
+    } else if (this.channelService.channel.allUsers.length < 2) {
       this.authService.openErrorMessage('You need more Users');
     } else {
       this.authService.openErrorMessage('Not all users are ready');
