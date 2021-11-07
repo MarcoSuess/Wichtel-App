@@ -33,6 +33,10 @@ import { DialogJoinChannelComponent } from './dialog-join-channel/dialog-join-ch
 import { DashboardComponent } from './dashboard/dashboard.component';
 import {MatSlideToggleModule} from '@angular/material/slide-toggle';
 import { DialogAddWishComponent } from './dialog-add-wish/dialog-add-wish.component';
+import { DialogDeleteChannelComponent } from './dialog-delete-channel/dialog-delete-channel.component';
+import { DialogStartComponent } from './dialog-start/dialog-start.component';
+import { DialogUserDeleteComponent } from './dialog-user-delete/dialog-user-delete.component';
+
 
 @NgModule({
   declarations: [
@@ -44,6 +48,9 @@ import { DialogAddWishComponent } from './dialog-add-wish/dialog-add-wish.compon
     DialogJoinChannelComponent,
     DashboardComponent,
     DialogAddWishComponent,
+    DialogDeleteChannelComponent,
+    DialogStartComponent,
+    DialogUserDeleteComponent,
   ],
   imports: [
     AngularFireModule.initializeApp(environment.firebase),
@@ -67,7 +74,8 @@ import { DialogAddWishComponent } from './dialog-add-wish/dialog-add-wish.compon
     CommonModule,
     MatTabsModule,
     MatButtonModule,
-    MatSlideToggleModule
+    MatSlideToggleModule,
+    
   ],
   providers: [AuthService],
   bootstrap: [AppComponent],

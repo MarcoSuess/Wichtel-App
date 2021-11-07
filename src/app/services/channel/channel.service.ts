@@ -4,7 +4,6 @@ import {
   AngularFirestore,
   AngularFirestoreDocument,
 } from '@angular/fire/compat/firestore';
-import * as firebase from 'firebase/compat';
 import { UserService } from '../user/user.service';
 import { Channel } from './channel';
 
@@ -35,7 +34,8 @@ export class ChannelService {
       ID: newID,
       joinedUser: [],
       admin: this.userService.user.uid,
-      allUsers: []
+      allUsers: [],
+      open: true
     };
     return channelRef.set(channelData, {
       merge: true,
@@ -56,6 +56,7 @@ export class ChannelService {
         this.channel.joinedUser = channel.joinedUser;
         this.channel.admin = channel.admin;
         this.channel.allUsers = channel.allUsers;
+        this.channel.open = channel.open;
         this.loadChannel = true;
       });
   }
@@ -81,7 +82,8 @@ export class ChannelService {
       ID: channel.ID,
       joinedUser: channel.joinedUser,
       admin: channel.admin,
-      allUsers : channel.allUsers
+      allUsers: channel.allUsers,
+      open:  channel.open
     };
   }
 
@@ -93,6 +95,17 @@ export class ChannelService {
         console.log('all Channels', channels);
 
         this.allChannels = channels;
+      });
+  }
+
+  deleteChannel(channelIndex: any) {
+    this.firestore
+      .collection('channels')
+      .get()
+      .toPromise()
+      .then((querySnapshot) => {
+        querySnapshot.docs[channelIndex].ref.delete()
+        this.allChannels.splice(channelIndex, 1);
       });
   }
 }

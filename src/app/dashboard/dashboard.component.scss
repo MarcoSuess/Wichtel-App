@@ -1,19 +1,18 @@
 .nav-bar {
+  overflow-y: auto;
   position: absolute;
-  bottom: 16px;
+  top: 0;
   right: 0;
   left: 0;
-
-  display: flex;
+  bottom: 0;
   justify-content: center;
-
-  @media (max-height: 630px) {
-    position: relative;
-  }
+  align-items: center;
+  display: flex;
 
   mat-tab-group {
-    flex-direction: column-reverse !important;
-    width: 100 vw;
+    height: 100%;
+    justify-content: center;
+    width: 100vw;
     align-items: center;
 
     mat-icon {
@@ -28,13 +27,32 @@
     }
   }
 }
+:host ::ng-deep .mat-tab-header {
+  position: absolute !important;
+  bottom: 8px !important;
+  z-index: 999;
+}
+
+:host ::ng-deep .mat-tab-body-content {
+  min-height: 40vh !important;
+  max-height: 72vh !important;
+  height: auto;
+
+  @media only screen and (max-height: 400px) {
+    max-height: 40vh !important;
+    overflow-y: auto !important;
+  }
+  @media only screen and (max-height: 600px) {
+    overflow-y: auto !important;
+  }
+}
 
 h2 {
   display: flex;
   justify-content: center;
   color: white;
   margin-top: 32px;
- 
+
   background: #5a9122;
   width: 100vw;
   font-family: "Irish Grover", cursive !important;
@@ -42,7 +60,7 @@ h2 {
 
 .group-container {
   width: 80vw;
-  height: 60vh;
+  height: 100%;
   display: flex;
   overflow-y: auto;
   align-items: center;
@@ -54,7 +72,6 @@ h2 {
   width: 80%;
   align-items: center;
   justify-content: center;
-  background: #a4251a;
   border-radius: 8px;
   position: relative;
   margin-top: 16px;
@@ -80,6 +97,8 @@ h2 {
 }
 
 mat-slide-toggle {
+  color: white;
+  font-size: 1rem;
   margin-top: 128px;
 }
 
@@ -95,7 +114,7 @@ mat-slide-toggle {
 
 .profile-section {
   margin-bottom: 48px;
-
+  height: 50vh;
   button {
     position: absolute;
     bottom: 8px;
@@ -117,7 +136,8 @@ mat-slide-toggle {
   justify-content: center;
   align-items: center;
   border-radius: 16px;
-  position: relative;
+
+  word-break: break-word;
 
   h4 {
     margin: 0;
@@ -128,13 +148,11 @@ mat-slide-toggle {
     height: 32px !important;
     width: 32px !important;
     object-fit: cover;
-    position: absolute;
-    left: 16px;
+  
   }
 
   mat-icon {
-    position: absolute;
-    right: 16px;
+    
     font-size: 24px !important;
   }
 }
@@ -156,10 +174,29 @@ mat-slide-toggle {
   background: #a12221;
   border-radius: 8px;
   width: 100%;
-  margin-top: 16px;
+  margin-top: 10vh;
 
   h3 {
     margin: 0;
     color: white;
+  }
+}
+
+.btn-start {
+  margin-top: 32px;
+  width: 50vw;
+}
+
+.createWish-btn {
+  position: absolute;
+  right: 0;
+  bottom: 0;
+  z-index: 99999;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+
+  mat-icon {
+    font-size: 2em !important;
   }
 }

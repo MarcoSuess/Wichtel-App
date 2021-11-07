@@ -1,0 +1,9 @@
+<h2 mat-dialog-title>{{ returnUserData(user.ID).displayName }}</h2>
+
+<div mat-dialog-actions>
+  <button mat-button mat-dialog-close>Close</button>
+
+  <button style="color: black" class="delete-btn" mat-button color="warn" (click)="deleteUser()">
+    Kick out
+  </button>
+</div>

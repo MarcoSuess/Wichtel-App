@@ -36,15 +36,17 @@ export class ChannelsComponent implements OnInit {
     this.dialog.open(DialogAddChannelComponent);
   }
 
-  openDialogChannelLogin(channel: any) {
+  openDialogChannelLogin(channel: any, index: number) {
     this.dialog.open(DialogJoinChannelComponent, {
       data: {
+        ID: channel.ID,
+        admin: channel.admin,
+        allUsers: channel.allUsers,
+        joinedUser: channel.joinedUser,
         name: channel.name,
         password: channel.password,
-        ID: channel.ID,
-        joinedUser: channel.joinedUser,
-        admin: channel.admin,
-        allUsers : channel.allUsers
+        index : index,
+        open: channel.open
       },
     });
   }

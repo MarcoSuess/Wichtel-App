@@ -13,14 +13,63 @@
           <div
             *ngFor="let user of channelService.channel.joinedUser"
             class="user-container"
+            [ngStyle]="{
+              'background-color':
+                user.userID == channelService.channel.admin
+                  ? '#8a6fe1'
+                  : '#a4251a'
+            }"
+            (click)="openDialogUserData(user)"
           >
             <mat-icon class="example-tab-icon icon-person">person</mat-icon>
-            <h3>{{ returnUserData(user.userID).displayName }}</h3>
+            <h3>
+              {{ returnUserData(user.userID).displayName }}
+            </h3>
             <mat-icon *ngIf="user.ready" class="example-tab-icon icon-ready"
               >thumb_up</mat-icon
             >
             <mat-icon *ngIf="!user.ready" class="example-tab-icon icon-ready"
               >thumb_down</mat-icon
+            >
+          </div>
+        </div>
+      </mat-tab>
+
+      <mat-tab>
+        <ng-template mat-tab-label>
+          <mat-icon class="example-tab-icon">account_circle</mat-icon>
+        </ng-template>
+
+        <button class="createWish-btn" mat-fab color="accent">
+          <mat-icon (click)="openDialogCreateWish()" class="example-tab-icon"
+            >post_add</mat-icon
+          >
+        </button>
+
+        <div class="userTitle">
+          <mat-icon class="example-tab-icon icon-person">person</mat-icon>
+          <h3>
+            {{ userService.user.displayName }}
+          </h3>
+        </div>
+
+        <div class="group-container profile-section">
+          <img
+            class="wishList-img"
+            *ngIf="filterWishUser().wish.length <= 0"
+            src="assets/wish-list.png"
+          />
+
+          <div
+            *ngFor="let wish of filterWishUser().wish; let i = index"
+            class="wish-container"
+          >
+          <img src="assets/gift-icon.png" />
+            <h4>{{ wish }}</h4>
+
+            
+            <mat-icon (click)="deleteWish(i)" class="example-tab-icon"
+              >delete</mat-icon
             >
           </div>
         </div>
@@ -43,11 +92,23 @@
           />
           <mat-spinner [color]="'warn'" *ngIf="loadGift"></mat-spinner>
           <mat-slide-toggle
-            *ngIf="checkFalseExistsArray(channelService.channel?.joinedUser)"
+            *ngIf="channelService.channel.open && channelService.channel.allUsers.length > 1"
             [checked]="filterUserInChannel()?.ready"
             (change)="checkToggle($event)"
             >Ready ?
           </mat-slide-toggle>
+
+          <button
+            *ngIf="
+              userService.user.uid == channelService.channel.admin &&
+              channelService.channel.open && channelService.channel.allUsers.length > 1"
+            class="btn-start"
+            mat-raised-button
+            color="warn"
+            (click)="openDialogToStart()"
+          >
+            Start
+          </button>
         </div>
 
         <!--   getUserGift -->
@@ -76,50 +137,12 @@
               "
               class="wish-container"
             >
+            <img src="assets/gift-icon.png" />
               <h4>{{ wish }}</h4>
 
-              <img src="assets/gift-icon.png" />
+            
             </div>
           </div>
-        </div>
-      </mat-tab>
-
-      <mat-tab>
-        <ng-template mat-tab-label>
-          <mat-icon class="example-tab-icon">account_circle</mat-icon>
-        </ng-template>
-
-        <div class="userTitle">
-          <mat-icon class="example-tab-icon icon-person">person</mat-icon>
-          <h3>
-            {{ userService.user.displayName }}
-          </h3>
-        </div>
-
-        <div class="group-container profile-section">
-          <img
-            class="wishList-img"
-            *ngIf="filterWishUser().wish.length <= 0"
-            src="assets/wish-list.png"
-          />
-
-          <div
-            *ngFor="let wish of filterWishUser().wish; let i = index"
-            class="wish-container"
-          >
-            <h4>{{ wish }}</h4>
-
-            <img src="assets/gift-icon.png" />
-            <mat-icon (click)="deleteWish(i)" class="example-tab-icon"
-              >delete</mat-icon
-            >
-          </div>
-
-          <button mat-fab color="accent">
-            <mat-icon (click)="openDialogCreateWish()" class="example-tab-icon"
-              >post_add</mat-icon
-            >
-          </button>
         </div>
       </mat-tab>
     </mat-tab-group>

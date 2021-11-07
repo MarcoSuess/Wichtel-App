@@ -8,4 +8,13 @@
 <div mat-dialog-actions>
   <button mat-button mat-dialog-close>Close</button>
   <button (click)="joinChannel(pw.value)" mat-button>Join</button>
+  <button
+    *ngIf="this.userService.user.uid == channel.admin"
+    class="delete-btn"
+    mat-button
+    color="warn"
+    (click)="openWarnDialog()"
+  >
+    Delete
+  </button>
 </div>

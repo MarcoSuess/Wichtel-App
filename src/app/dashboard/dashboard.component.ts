@@ -2,6 +2,9 @@ import { Component, OnInit } from '@angular/core';
 import { MatDialog } from '@angular/material/dialog';
 import { ActivatedRoute } from '@angular/router';
 import { DialogAddWishComponent } from '../dialog-add-wish/dialog-add-wish.component';
+import { DialogDeleteChannelComponent } from '../dialog-delete-channel/dialog-delete-channel.component';
+import { DialogStartComponent } from '../dialog-start/dialog-start.component';
+import { DialogUserDeleteComponent } from '../dialog-user-delete/dialog-user-delete.component';
 import { AuthService } from '../services/auth/auth.service';
 import { ChannelService } from '../services/channel/channel.service';
 import { UserService } from '../services/user/user.service';
@@ -92,6 +95,8 @@ export class DashboardComponent implements OnInit {
       } else {
         this.authService.openErrorMessage('Try Again');
       }
+    } else if(this.channelService.channel.allUsers.length > 0) {
+      this.authService.openErrorMessage('You need more Users');
     } else {
       this.authService.openErrorMessage('Not all users are ready');
     }
@@ -128,4 +133,19 @@ export class DashboardComponent implements OnInit {
   getRandomUserIndex(arr: any) {
     return Math.floor(Math.random() * arr.length);
   }
+
+
+  openDialogToStart() {
+    this.dialog.open(DialogStartComponent);
+  }
+
+  openDialogUserData(user: any) {
+    if(this.channelService.channel.admin == this.userService.user.uid)
+    this.dialog.open(DialogUserDeleteComponent, {
+      data: {
+        ID : user.userID
+      }
+    });
+  }
+
 }

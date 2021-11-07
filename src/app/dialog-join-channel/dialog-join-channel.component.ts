@@ -1,9 +1,15 @@
 import { Component, Inject, OnInit } from '@angular/core';
-import { MatDialogRef, MAT_DIALOG_DATA } from '@angular/material/dialog';
+import {
+  MatDialog,
+  MatDialogRef,
+  MAT_DIALOG_DATA,
+} from '@angular/material/dialog';
 import { Router } from '@angular/router';
+import { DialogDeleteChannelComponent } from '../dialog-delete-channel/dialog-delete-channel.component';
 import { AuthService } from '../services/auth/auth.service';
 import { ChannelService } from '../services/channel/channel.service';
 import { UserService } from '../services/user/user.service';
+
 
 @Component({
   selector: 'app-dialog-join-channel',
@@ -17,7 +23,8 @@ export class DialogJoinChannelComponent implements OnInit {
     public authService: AuthService,
     private channelService: ChannelService,
     public router: Router,
-    private dialogRef: MatDialogRef<DialogJoinChannelComponent>
+    private dialogRef: MatDialogRef<DialogJoinChannelComponent>,
+    public dialog: MatDialog
   ) {}
 
   ngOnInit(): void {
@@ -31,7 +38,7 @@ export class DialogJoinChannelComponent implements OnInit {
         this.filterJoinedUser(this.channel) == this.userService.user.uid
       ) {
         this.navigateToDashboard();
-      } else {
+      } else if(this.channel.open) {
         this.addUser();
       }
     } else {
@@ -40,6 +47,9 @@ export class DialogJoinChannelComponent implements OnInit {
   }
 
   errorMessage() {
+    if(!this.channel.open) 
+    this.authService.openErrorMessage('Channel is not open!');
+    else 
     this.authService.openErrorMessage('Password is not correct!');
   }
 
@@ -72,5 +82,14 @@ export class DialogJoinChannelComponent implements OnInit {
       '/channel/' + this.userService.user.uid + '/dashboard/' + this.channel.ID
     );
     this.dialogRef.close();
+  }
+
+  openWarnDialog() {
+    this.dialog.open(DialogDeleteChannelComponent, {
+      data: {
+        index: this.channel.index,
+        ID: this.channel.ID
+      },
+    });
   }
 }

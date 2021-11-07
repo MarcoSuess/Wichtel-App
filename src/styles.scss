@@ -9,10 +9,6 @@ body {
   margin: 0;
   background-image: url("/assets/background.jpg");
   background-size: cover;
-
-  @media (max-height: 630px) {
-    background-size: inherit;
-  }
 }
 
 mat-card {
@@ -20,6 +16,7 @@ mat-card {
   background: #de5b5b !important;
   color: white !important;
   z-index: 2000 !important;
+  
 }
 
 mat-error {
@@ -40,18 +37,18 @@ input {
   color: black !important;
 }
 
-.mat-form-field-label{
-  color:white !important;
+.mat-form-field-label {
+  color: white !important;
 }
-.mat-form-field-underline{
-  background-color:white !important;
+.mat-form-field-underline {
+  background-color: white !important;
 }
 input:-webkit-autofill,
 input:-webkit-autofill:focus {
-    transition: background-color 600000s 0s, color 600000s 0s;
+  transition: background-color 600000s 0s, color 600000s 0s;
 }
 input[data-autocompleted] {
-    background-color: transparent !important;
+  background-color: transparent !important;
 }
 
 mat-dialog-container {
