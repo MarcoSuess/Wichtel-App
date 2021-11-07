@@ -77,6 +77,13 @@ export class DashboardComponent implements OnInit {
   }
 
   getUserGift() {
+    let test = this.userService.allUser.filter(
+      (allUser: { wishes: any }) =>
+        allUser.wishes.channelID == this.channelService.currentChannelID
+    );
+
+    console.log(test);
+
     let arr = this.channelService.channel.joinedUser;
     let randomUserIndex = this.getRandomUserIndex(arr);
 
@@ -84,18 +91,26 @@ export class DashboardComponent implements OnInit {
 
     if (!this.channelService.channel.open) {
       /*   // getRandom USer */
-    
-      if (arr[randomUserIndex].userID !== this.userService.user.uid) {
+
+      if (
+        arr[randomUserIndex].userID !== this.userService.user.uid &&
+        this.filterUserWishes().forbiddenUser
+      ) {
         this.loadGift = true;
         this.filterUserWishes().draggedUser = arr[randomUserIndex].userID;
         arr.splice(randomUserIndex, 1);
+        this.filterOhterUserWishes(
+          this.returnUserData(arr[randomUserIndex].userID)
+        ).forbiddenUser = this.userService.user.uid;
+
+        this.userService.saveOtherUserData(arr[randomUserIndex].userID);
         this.channelService.updateCurrentChannel();
         this.userService.saveUserData();
         this.loadGift = false;
       } else {
         this.authService.openErrorMessage('Try Again');
       }
-    } else if(this.channelService.channel.allUsers.length == 1) {
+    } else if (this.channelService.channel.allUsers.length == 2) {
       this.authService.openErrorMessage('You need more Users');
     } else {
       this.authService.openErrorMessage('Not all users are ready');
@@ -134,18 +149,16 @@ export class DashboardComponent implements OnInit {
     return Math.floor(Math.random() * arr.length);
   }
 
-
   openDialogToStart() {
     this.dialog.open(DialogStartComponent);
   }
 
   openDialogUserData(user: any) {
-    if(this.channelService.channel.admin == this.userService.user.uid)
-    this.dialog.open(DialogUserDeleteComponent, {
-      data: {
-        ID : user.userID
-      }
-    });
+    if (this.channelService.channel.admin == this.userService.user.uid)
+      this.dialog.open(DialogUserDeleteComponent, {
+        data: {
+          ID: user.userID,
+        },
+      });
   }
-
 }

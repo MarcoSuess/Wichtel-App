@@ -92,7 +92,7 @@
           />
           <mat-spinner [color]="'warn'" *ngIf="loadGift"></mat-spinner>
           <mat-slide-toggle
-            *ngIf="channelService.channel.open && channelService.channel.allUsers.length > 1"
+            *ngIf="channelService.channel.open && channelService.channel.allUsers.length > 2"
             [checked]="filterUserInChannel()?.ready"
             (change)="checkToggle($event)"
             >Ready ?

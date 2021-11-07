@@ -63,6 +63,7 @@ export class DialogJoinChannelComponent implements OnInit {
       channelID: this.channel.ID,
       wish: [],
       draggedUser: '',
+      forbiddenUser: ''
     });
     this.userService.saveUserData();
     this.channelService.saveOtherChannelData(this.channel);
