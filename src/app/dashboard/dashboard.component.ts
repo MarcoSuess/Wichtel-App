@@ -95,7 +95,7 @@ export class DashboardComponent implements OnInit {
       } else {
         this.authService.openErrorMessage('Try Again');
       }
-    } else if(this.channelService.channel.allUsers.length > 0) {
+    } else if(this.channelService.channel.allUsers.length == 1) {
       this.authService.openErrorMessage('You need more Users');
     } else {
       this.authService.openErrorMessage('Not all users are ready');

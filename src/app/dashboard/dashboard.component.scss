@@ -79,7 +79,6 @@ h2 {
   overflow-y: auto;
   cursor: pointer;
 
-
   &:hover {
     opacity: 0.4;
   }
@@ -100,6 +99,11 @@ h2 {
     height: 180px !important;
     width: 180px !important;
     object-fit: cover;
+    cursor: pointer;
+
+    &:hover {
+      opacity: 0.4;
+    }
   }
 }
 
@@ -143,24 +147,27 @@ mat-slide-toggle {
   justify-content: center;
   align-items: center;
   border-radius: 16px;
-
+  position: relative;
   word-break: break-word;
 
   h4 {
     margin: 0;
     color: white;
+    max-width: 40vw;
   }
 
   img {
     height: 32px !important;
     width: 32px !important;
     object-fit: cover;
-  
+    position: absolute;
+    left: 16px;
   }
 
   mat-icon {
-    
     font-size: 24px !important;
+    position: absolute;
+    right: 16px;
   }
 }
 
@@ -214,7 +221,6 @@ mat-slide-toggle {
 }
 
 .trash-icon {
-
   cursor: pointer;
 
   &:hover {
