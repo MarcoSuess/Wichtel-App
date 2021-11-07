@@ -54,7 +54,7 @@ export class DashboardComponent implements OnInit {
     return getOtherUserData;
   }
 
-  filterOhterUserWishes(user: any) {
+  filterOtherUserWishes(user: any) {
     let getUser = user.wishes.filter(
       (wishes: { channelID: any }) =>
         wishes.channelID == this.channelService.currentChannelID
@@ -77,12 +77,18 @@ export class DashboardComponent implements OnInit {
   }
 
   getUserGift() {
+
     let arr = this.channelService.channel.joinedUser;
     let randomUserIndex = this.getRandomUserIndex(arr);
 
+    
+    console.log(   this.filterUserWishes());
+    
+
+
     if (!this.channelService.channel.open) {
       /*   // getRandom USer */
-    
+
       if (
         arr[randomUserIndex].userID !== this.userService.user.uid &&
         arr[randomUserIndex].userID !== this.filterUserWishes().forbiddenUser
@@ -90,12 +96,13 @@ export class DashboardComponent implements OnInit {
         console.log(this.filterUserWishes());
         this.loadGift = true;
         this.filterUserWishes().draggedUser = arr[randomUserIndex].userID;
-        arr.splice(randomUserIndex, 1);
-        this.filterOhterUserWishes(
+     
+
+        this.filterOtherUserWishes(
           this.returnUserData(arr[randomUserIndex].userID)
         ).forbiddenUser = this.userService.user.uid;
-
-        this.userService.saveOtherUserData(arr[randomUserIndex].userID);
+        arr.splice(randomUserIndex, 1);
+        this.userService.saveOtherUserData(this.returnUserData(arr[randomUserIndex].userID));
         this.channelService.updateCurrentChannel();
         this.userService.saveUserData();
         this.loadGift = false;

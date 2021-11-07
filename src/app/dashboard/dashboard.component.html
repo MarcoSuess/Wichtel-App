@@ -125,14 +125,14 @@
             <img
               class="wishList-img"
               *ngIf="
-                filterOhterUserWishes(filterOhterUserData()).wish.length <= 0
+              filterOtherUserWishes(filterOhterUserData()).wish.length <= 0
               "
               src="assets/wish-list.png"
             />
 
             <div
               *ngFor="
-                let wish of filterOhterUserWishes(filterOhterUserData()).wish;
+                let wish of filterOtherUserWishes(filterOhterUserData()).wish;
                 let i = index
               "
               class="wish-container"
