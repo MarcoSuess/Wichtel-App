@@ -23,7 +23,7 @@
           >
             <mat-icon class="example-tab-icon icon-person">person</mat-icon>
             <h3>
-              {{ returnUserData(user.userID).displayName }}
+              {{ giftService.returnUserData(user.userID).displayName }}
             </h3>
             <mat-icon *ngIf="user.ready" class="example-tab-icon icon-ready"
               >thumb_up</mat-icon
@@ -64,11 +64,12 @@
             *ngFor="let wish of filterWishUser().wish; let i = index"
             class="wish-container"
           >
-          <img src="assets/gift-icon.png" />
+            <img src="assets/gift-icon.png" />
             <h4>{{ wish }}</h4>
 
-            
-            <mat-icon (click)="deleteWish(i)" class="example-tab-icon trash-icon"
+            <mat-icon
+              (click)="deleteWish(i)"
+              class="example-tab-icon trash-icon"
               >delete</mat-icon
             >
           </div>
@@ -86,22 +87,20 @@
           class="group-container gift-container"
         >
           <img
-            *ngIf="!loadGift"
-            (click)="getUserGift()"
+            *ngIf="!giftService.loadGift"
+            (click)="openGift()"
             src="assets/gift-icon.png"
           />
-          <mat-spinner [color]="'warn'" *ngIf="loadGift"></mat-spinner>
+          <mat-spinner [color]="'warn'" *ngIf="giftService.loadGift"></mat-spinner>
           <mat-slide-toggle
-            *ngIf="channelService.channel.open && channelService.channel.allUsers.length > 2"
+          *ngIf="channelService.channel.joinedUser"
             [checked]="filterUserInChannel()?.ready"
             (change)="checkToggle($event)"
             >Ready ?
           </mat-slide-toggle>
 
           <button
-            *ngIf="
-              userService.user.uid == channelService.channel.admin &&
-              channelService.channel.open && !this.checkFalseExistsArray(channelService.channel.joinedUser)"
+          *ngIf="userService.user.uid == channelService.channel.admin"
             class="btn-start"
             mat-raised-button
             color="warn"
@@ -117,7 +116,7 @@
           <div class="userTitle">
             <mat-icon class="example-tab-icon icon-person">person</mat-icon>
             <h3>
-              {{ filterOhterUserData().displayName }}
+              {{ giftService.filterOhterUserData().displayName }}
             </h3>
           </div>
 
@@ -125,22 +124,20 @@
             <img
               class="wishList-img"
               *ngIf="
-              filterOtherUserWishes(filterOhterUserData()).wish.length <= 0
+              giftService.filterOtherUserWishes(giftService.filterOhterUserData()).wish.length <= 0
               "
               src="assets/wish-list.png"
             />
 
             <div
               *ngFor="
-                let wish of filterOtherUserWishes(filterOhterUserData()).wish;
+                let wish of giftService.filterOtherUserWishes(giftService.filterOhterUserData()).wish;
                 let i = index
               "
               class="wish-container"
             >
-            <img src="assets/gift-icon.png" />
+              <img src="assets/gift-icon.png" />
               <h4>{{ wish }}</h4>
-
-            
             </div>
           </div>
         </div>

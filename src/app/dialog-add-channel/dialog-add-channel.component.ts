@@ -17,6 +17,7 @@ export class DialogAddChannelComponent implements OnInit {
 
   saveChannel(name: string, password: string) {
     this.channelService.createNewChannel(name, password);
+    this.channelService.loadAllChannels();
     this.dialogRef.close();
   }
 }

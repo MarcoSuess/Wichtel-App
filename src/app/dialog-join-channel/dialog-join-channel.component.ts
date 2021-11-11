@@ -10,7 +10,6 @@ import { AuthService } from '../services/auth/auth.service';
 import { ChannelService } from '../services/channel/channel.service';
 import { UserService } from '../services/user/user.service';
 
-
 @Component({
   selector: 'app-dialog-join-channel',
   templateUrl: './dialog-join-channel.component.html',
@@ -32,13 +31,15 @@ export class DialogJoinChannelComponent implements OnInit {
   }
 
   joinChannel(password: string) {
+    console.log(this.filterJoinedUser(this.channel.joinedUser));
+
     if (password == this.channel.password) {
       if (
-        this.channel.allUsers.length > 0 &&
-        this.filterJoinedUser(this.channel) == this.userService.user.uid
+        this.filterJoinedUser(this.channel.joinedUser)?.userID ==
+        this.userService.user.uid
       ) {
         this.navigateToDashboard();
-      } else if(this.channel.open) {
+      } else if (this.channel.open) {
         this.addUser();
       }
     } else {
@@ -47,10 +48,9 @@ export class DialogJoinChannelComponent implements OnInit {
   }
 
   errorMessage() {
-    if(!this.channel.open) 
-    this.authService.openErrorMessage('Channel is not open!');
-    else 
-    this.authService.openErrorMessage('Password is not correct!');
+    if (!this.channel.open)
+      this.authService.openErrorMessage('Channel is not open!');
+    else this.authService.openErrorMessage('Password is not correct!');
   }
 
   addUser() {
@@ -58,21 +58,23 @@ export class DialogJoinChannelComponent implements OnInit {
       userID: this.userService.user.uid,
       ready: false,
     });
-    this.channel.allUsers.push(this.userService.user.uid);
+
     this.userService.user.wishes.push({
       channelID: this.channel.ID,
       wish: [],
       draggedUser: '',
-      forbiddenUser: ''
+      forbiddenUser: '',
+      open: false,
     });
     this.userService.saveUserData();
     this.channelService.saveOtherChannelData(this.channel);
     this.navigateToDashboard();
   }
 
-  filterJoinedUser(channel: any) {
-    let getUser = channel.allUsers.filter(
-      (userID: string) => userID == this.userService.user.uid
+  filterJoinedUser(joinedUser: any) {
+    let getUser = joinedUser.filter(
+      (joinedUser: { userID: any }) =>
+        joinedUser.userID == this.userService.user.uid
     );
 
     return getUser[0];
@@ -89,7 +91,7 @@ export class DialogJoinChannelComponent implements OnInit {
     this.dialog.open(DialogDeleteChannelComponent, {
       data: {
         index: this.channel.index,
-        ID: this.channel.ID
+        ID: this.channel.ID,
       },
     });
   }

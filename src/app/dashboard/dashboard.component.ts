@@ -7,6 +7,7 @@ import { DialogStartComponent } from '../dialog-start/dialog-start.component';
 import { DialogUserDeleteComponent } from '../dialog-user-delete/dialog-user-delete.component';
 import { AuthService } from '../services/auth/auth.service';
 import { ChannelService } from '../services/channel/channel.service';
+import { GiftService } from '../services/gift.service';
 import { UserService } from '../services/user/user.service';
 
 @Component({
@@ -15,14 +16,13 @@ import { UserService } from '../services/user/user.service';
   styleUrls: ['./dashboard.component.scss'],
 })
 export class DashboardComponent implements OnInit {
-  loadGift: boolean = false;
-
   constructor(
     private route: ActivatedRoute,
     public dialog: MatDialog,
     public userService: UserService,
     public channelService: ChannelService,
-    public authService: AuthService
+    public authService: AuthService,
+    public giftService: GiftService
   ) {}
 
   ngOnInit(): void {
@@ -31,41 +31,10 @@ export class DashboardComponent implements OnInit {
     });
   }
 
-  returnUserData(userUID: any) {
-    let getUser = this.userService.allUser.filter(
-      (user: { uid: any }) => user.uid == userUID
-    );
-
-    return getUser[0];
-  }
-
   filterUserInChannel() {
-    let getUser = this.channelService.channel.joinedUser.filter(
+    let getUser = this.channelService.channel?.joinedUser?.filter(
       (joinedUser: { userID: any }) =>
         joinedUser.userID == this.userService.user.uid
-    );
-    return getUser[0];
-  }
-
-  filterOhterUserData() {
-    let otherUser = this.filterUserWishes().draggedUser;
-    let getOtherUserData = this.returnUserData(otherUser);
-
-    return getOtherUserData;
-  }
-
-  filterOtherUserWishes(user: any) {
-    let getUser = user.wishes.filter(
-      (wishes: { channelID: any }) =>
-        wishes.channelID == this.channelService.currentChannelID
-    );
-    return getUser[0];
-  }
-
-  filterUserWishes() {
-    let getUser = this.userService.user.wishes.filter(
-      (wishes: { channelID: any }) =>
-        wishes.channelID == this.channelService.currentChannelID
     );
     return getUser[0];
   }
@@ -76,55 +45,13 @@ export class DashboardComponent implements OnInit {
     this.channelService.updateCurrentChannel();
   }
 
-  getUserGift() {
-
-    let arr = this.channelService.channel.joinedUser;
-    let randomUserIndex = this.getRandomUserIndex(arr);
-
-    
-    console.log(   this.filterUserWishes());
-    
-
-
-    if (!this.channelService.channel.open) {
-      /*   // getRandom USer */
-
-      if (
-        arr[randomUserIndex].userID !== this.userService.user.uid &&
-        arr[randomUserIndex].userID !== this.filterUserWishes().forbiddenUser
-      ) {
-        console.log(this.filterUserWishes());
-        this.loadGift = true;
-        this.filterUserWishes().draggedUser = arr[randomUserIndex].userID;
-     
-
-        this.filterOtherUserWishes(
-          this.returnUserData(arr[randomUserIndex].userID)
-        ).forbiddenUser = this.userService.user.uid;
-        arr.splice(randomUserIndex, 1);
-        this.userService.saveOtherUserData(this.returnUserData(arr[randomUserIndex].userID));
-        this.channelService.updateCurrentChannel();
-        this.userService.saveUserData();
-        this.loadGift = false;
-      } else {
-        this.authService.openErrorMessage('Try Again');
-      }
-    } else if (this.channelService.channel.allUsers.length < 2) {
-      this.authService.openErrorMessage('You need more Users');
+  openGift() {
+    if (this.filterWishUser().draggedUser) {
+      this.filterWishUser().open = true;
+      this.userService.saveUserData();
     } else {
-      this.authService.openErrorMessage('Not all users are ready');
+      this.authService.openErrorMessage('has not yet been released');
     }
-  }
-
-  checkFalseExistsArray(array: any) {
-    if (array)
-      for (var k = 0; k < array.length; k++) {
-        if (!array[k].ready) {
-          return true;
-          break;
-        }
-      }
-    return false;
   }
 
   openDialogCreateWish() {
@@ -142,10 +69,6 @@ export class DashboardComponent implements OnInit {
   deleteWish(index: any) {
     this.filterWishUser().wish.splice(index, 1);
     this.userService.saveUserData();
-  }
-
-  getRandomUserIndex(arr: any) {
-    return Math.floor(Math.random() * arr.length);
   }
 
   openDialogToStart() {

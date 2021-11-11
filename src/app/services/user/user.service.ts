@@ -28,7 +28,7 @@ export class UserService {
         this.user.emailVerified = currentUser.emailVerified;
         this.user.online = true;
         this.user.wishes = currentUser.wishes;
-        
+
         this.loadCurrentUser = true;
       });
   }
@@ -72,4 +72,6 @@ export class UserService {
       wishes: user.wishes,
     };
   }
+
+  
 }

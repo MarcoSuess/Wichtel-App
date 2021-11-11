@@ -4,7 +4,6 @@ export class Channel {
   public ID: any;
   public joinedUser: any;
   public admin: any;
-  public allUsers: any = [];
   public open: boolean = true;
 
   public toJson() {
@@ -14,7 +13,6 @@ export class Channel {
       ID: this.ID,
       joinedUser: this.joinedUser,
       admin: this.admin,
-      allUsers: this.allUsers,
       open: this.open
     };
   }
