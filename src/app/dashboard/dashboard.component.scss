@@ -22,12 +22,15 @@
   }
 }
 :host ::ng-deep .mat-tab-header {
-  background: #7b7b7b9e;
+  background: #82a1a3;
   position: absolute !important;
   bottom: 8px !important;
   z-index: 999;
 }
 
+:host ::ng-deep .mat-tab-group.mat-primary .mat-ink-bar {
+  background-color: #ffffff;
+}
 :host ::ng-deep .mat-tab-body-content {
   min-height: 40vh !important;
   max-height: 72vh !important;
@@ -35,10 +38,8 @@
 
   @media only screen and (max-height: 400px) {
     max-height: 40vh !important;
-    overflow-y: auto !important;
   }
   @media only screen and (max-height: 600px) {
-    overflow-y: auto !important;
   }
 }
 
@@ -55,6 +56,7 @@ h2 {
   overflow-y: auto;
   align-items: flex-start;
   flex-direction: column;
+  height: 24vh;
 }
 
 .user-container {
