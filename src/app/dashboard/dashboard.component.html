@@ -85,10 +85,20 @@
 
       <mat-tab>
         <ng-template mat-tab-label>
-          <img src="assets/gift-icon.png" />
+          <img src="assets/icons/50-Christmas-Icons-23.png" />
         </ng-template>
 
         <!--    gift -->
+
+        <div class="yourWishList-headline">
+          <div>
+            <img src="assets/icons/50-Christmas-Icons-50.png" >
+            <h2>
+              Wichteln
+            </h2>
+          </div>
+        </div>
+
         <div
           *ngIf="!filterWishUser().draggedUser"
           class="group-container gift-container"
@@ -96,15 +106,22 @@
           <img
             *ngIf="!giftService.loadGift"
             (click)="openGift()"
-            src="assets/gift-icon.png"
+            src="assets/icons/50-Christmas-Icons-23.png"
           />
-          <mat-spinner [color]="'warn'" *ngIf="giftService.loadGift"></mat-spinner>
-          <mat-slide-toggle
-          *ngIf="channelService.channel.joinedUser"
-            [checked]="filterUserInChannel()?.ready"
-            (change)="checkToggle($event)"
-            >Ready ?
-          </mat-slide-toggle>
+          <!-- <mat-spinner [color]="'warn'" *ngIf="giftService.loadGift"></mat-spinner> -->
+
+        <div class="ready-container">
+
+          <div>
+            <img src="assets/icons/50-Christmas-Icons-45.png">
+            <mat-slide-toggle
+            *ngIf="channelService.channel.joinedUser"
+              [checked]="filterUserInChannel()?.ready"
+              (change)="checkToggle($event)"
+              >Ready ?
+            </mat-slide-toggle>
+          </div>
+   
 
           <button
           *ngIf="userService.user.uid == channelService.channel.admin"
@@ -115,6 +132,9 @@
           >
             Start
           </button>
+        </div>
+          
+      
         </div>
 
         <!--   getUserGift -->
