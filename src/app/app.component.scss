@@ -5,13 +5,11 @@ header {
   justify-content: space-between;
   padding: 0px 16px 0px 16px;
 
-
   mat-icon {
     color: #000000;
     cursor: pointer;
     font-size: 2em;
   }
-
 
   b {
     color: #82a1a3;
@@ -19,7 +17,24 @@ header {
 }
 
 .logo {
- height: 8vh;
+  height: 8vh;
   object-fit: cover;
 }
 
+.snowflake {
+  position: absolute;
+  height: 64px;
+  width: 64px;
+  object-fit: cover;
+  z-index: -9999;
+  animation: fallingSnow 24s infinite linear;
+}
+
+@keyframes fallingSnow {
+  0% {
+    transform: translateY(-10vh);
+  }
+  100% {
+    transform: translateY(95vh);
+  }
+}
