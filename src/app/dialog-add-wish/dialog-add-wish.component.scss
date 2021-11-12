@@ -1,0 +1,22 @@
+.loadImg-container {
+  width: 100%;
+
+  img {
+    height: 64px;
+    width: 64px;
+    object-fit: cover;
+
+    animation: smoothRight 3s cubic-bezier(0.4, 0, 1, 1);
+  }
+}
+
+@keyframes smoothRight {
+  0% {
+    transform: translateX(-200px);
+  }
+  100% {
+    transform: translateX(1000px);
+  }
+}
+
+

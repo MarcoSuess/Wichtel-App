@@ -6,7 +6,7 @@
           <mat-icon class="example-tab-icon">groups</mat-icon>
         </ng-template>
         <h2>All Users</h2>
-        <div class="group-container">
+        <div class="group-container overflow-settings">
           <div
             *ngFor="let user of channelService.channel.joinedUser"
             class="user-container"
@@ -76,12 +76,19 @@
 
         <div class="yourWishList-headline">
           <div>
-            
-            <img *ngIf="!filterWishUser().open" src="assets/icons/50-Christmas-Icons-50.png" />
+            <img
+              *ngIf="!filterWishUser().open"
+              src="assets/icons/50-Christmas-Icons-50.png"
+            />
             <h2 *ngIf="!filterWishUser().open">Wichteln</h2>
-        <!--     open -->
-            <img *ngIf="filterWishUser().open" src="assets/icons/50-Christmas-Icons-30.png" />
-            <h2 *ngIf="filterWishUser().open">Your Wichtel: </h2>
+            <!--     open -->
+            <img
+              *ngIf="filterWishUser().open"
+              src="assets/icons/50-Christmas-Icons-30.png"
+            />
+            <h2 *ngIf="filterWishUser().open">
+              Your Wichtel: {{ giftService.filterOhterUserData().displayName }}
+            </h2>
           </div>
         </div>
 
@@ -114,20 +121,18 @@
               color="warn"
               (click)="openDialogToStart()"
             >
-              Start 
+              Start
             </button>
           </div>
         </div>
 
         <!--   getUserGift -->
 
-        <div *ngIf="filterWishUser().draggedUser && filterWishUser().open" class="group-container">
-          <div class="userTitle">
-            <mat-icon class="example-tab-icon icon-person">person</mat-icon>
-            <h3>
-              {{ giftService.filterOhterUserData().displayName }}
-            </h3>
-          </div>
+        <div
+          *ngIf="filterWishUser().draggedUser && filterWishUser().open"
+          class="group-container"
+        >
+   
 
           <div class="group-container profile-section">
             <img
@@ -149,7 +154,7 @@
               "
               class="user-container"
             >
-              <img src="assets/gift-icon.png" />
+              <img src="assets/icons/50-Christmas-Icons-23.png" />
               <h3>{{ wish }}</h3>
             </div>
           </div>

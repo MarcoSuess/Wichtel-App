@@ -1,1 +1,13 @@
-<p>menu-bar works!</p>
+<h1>Welcome</h1>
+<div class="user-name">
+  <mat-icon class="example-tab-icon icon-person">person</mat-icon>
+  <h2>{{ userService.user.displayName }}</h2>
+</div>
+
+<button (click)="authService.signOut()" class="logout-btn ">
+    <mat-icon>
+       logout
+      </mat-icon>
+      <b>Logout</b> 
+</button>
+

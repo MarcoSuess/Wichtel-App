@@ -1,5 +1,5 @@
-import { analyzeAndValidateNgModules } from '@angular/compiler';
 import { Component, OnInit } from '@angular/core';
+import { MatDialog } from '@angular/material/dialog';
 import { ChannelService } from '../services/channel/channel.service';
 import { UserService } from '../services/user/user.service';
 
@@ -9,9 +9,12 @@ import { UserService } from '../services/user/user.service';
   styleUrls: ['./dialog-add-wish.component.scss'],
 })
 export class DialogAddWishComponent implements OnInit {
+  loadImg: boolean = false;
+
   constructor(
     private userService: UserService,
-    private channelService: ChannelService
+    private channelService: ChannelService,
+    private dialogRef: MatDialog
   ) {}
 
   ngOnInit(): void {}
@@ -22,7 +25,15 @@ export class DialogAddWishComponent implements OnInit {
     ) {
       this.filterWishUser().wish.push(wish);
       this.userService.saveUserData();
+      this.loadImg = true;
+
+      setTimeout(() => {
+        this.loadImg = false;
+        this.dialogRef.closeAll();
+      }, 2800);
     }
+
+  
   }
 
   filterWishUser() {

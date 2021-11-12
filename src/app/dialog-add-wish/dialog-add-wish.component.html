@@ -6,13 +6,17 @@
   </mat-form-field>
 </div>
 <div mat-dialog-actions>
-  <button mat-button mat-dialog-close>Close</button>
+  <button [disabled]="loadImg" mat-button mat-dialog-close>Close</button>
   <button
-    mat-dialog-close
+    [disabled]="loadImg"
     *ngIf="wish.value"
     (click)="saveWish(wish.value)"
     mat-button
   >
     Save
   </button>
+</div>
+
+<div class="loadImg-container">
+  <img *ngIf="loadImg"  src="assets/icons/50-Christmas-Icons-45.png" />
 </div>
