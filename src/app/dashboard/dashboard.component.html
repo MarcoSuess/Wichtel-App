@@ -42,38 +42,43 @@
           <mat-icon class="example-tab-icon">account_circle</mat-icon>
         </ng-template>
 
-        <button class="createWish-btn" mat-fab color="accent">
-          <mat-icon (click)="openDialogCreateWish()" class="example-tab-icon"
-            >post_add</mat-icon
-          >
-        </button>
+      
 
-        <div class="userTitle">
-          <mat-icon class="example-tab-icon icon-person">person</mat-icon>
-          <h3>
-            {{ userService.user.displayName }}
-          </h3>
+        <div class="yourWishList-headline">
+          <div>
+            <img src="assets/icons/50-Christmas-Icons-08.png" >
+            <h2>
+              Your Wishlist
+            </h2>
+          </div>
+         
+
+          <button mat-fab color="accent">
+            <mat-icon (click)="openDialogCreateWish()" class="example-tab-icon"
+              >post_add</mat-icon
+            >
+          </button>
+
         </div>
+         
+       
+          
 
-        <div class="group-container profile-section">
-          <img
-            class="wishList-img"
-            *ngIf="filterWishUser().wish.length <= 0"
-            src="assets/wish-list.png"
-          />
+        <div class="group-container">
+         
 
           <div
             *ngFor="let wish of filterWishUser().wish; let i = index"
-            class="wish-container"
+            class="user-container"
           >
-            <img src="assets/gift-icon.png" />
-            <h4>{{ wish }}</h4>
+            <img src="assets/icons/50-Christmas-Icons-03.png" />
+            <h3>{{ wish }}</h3>
 
-            <mat-icon
+          <!--   <mat-icon
               (click)="deleteWish(i)"
               class="example-tab-icon trash-icon"
               >delete</mat-icon
-            >
+            > -->
           </div>
         </div>
       </mat-tab>

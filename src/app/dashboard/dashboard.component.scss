@@ -15,9 +15,9 @@
     }
 
     img {
-      height: 40px;
-      width: 40px;
-      object-fit: contain;
+      height: 64px;
+      width: 64px;
+      object-fit: cover;
     }
   }
 }
@@ -56,7 +56,7 @@ h2 {
   overflow-y: auto;
   align-items: flex-start;
   flex-direction: column;
-  height: 24vh;
+  height: 50vh;
 }
 
 .user-container {
@@ -72,6 +72,7 @@ h2 {
   justify-content: flex-start;
   padding: 8px;
   height: 3vh;
+  height: auto;
 
   &:hover {
     opacity: 0.4;
@@ -87,6 +88,7 @@ h2 {
     color: #82a1a3;
     font-size: 1.2rem;
     font-family: fantasy;
+    word-break: break-word;
   }
 }
 
@@ -119,107 +121,52 @@ mat-slide-toggle {
   right: 16px;
 }
 
-.profile-section {
-  margin-bottom: 48px;
-  height: 50vh;
-  button {
-    position: absolute;
-    bottom: 8px;
-    right: 0px;
-
-    mat-icon {
-      display: flex;
-      justify-content: center;
-      align-items: center;
-    }
-  }
-}
-
-.wish-container {
-  background: #70a240;
-  width: 64vw;
-  margin-top: 16px;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  border-radius: 16px;
-  position: relative;
-  word-break: break-word;
-
-  h4 {
-    margin: 0;
-    color: white;
-    max-width: 40vw;
-  }
-
-  img {
-    height: 32px !important;
-    width: 32px !important;
-    object-fit: cover;
-    position: absolute;
-    left: 16px;
-  }
-
-  mat-icon {
-    font-size: 24px !important;
-    position: absolute;
-    right: 16px;
-  }
-}
-
-.wishList-img {
-  height: 100% !important;
-  width: 100% !important;
-  margin-top: 32px;
-  object-fit: cover;
-  opacity: 0.9;
-  border-radius: 32px;
-  position: absolute;
-}
-
-.userTitle {
-  position: relative;
-  display: flex;
-  justify-content: center;
-  background: #a12221;
-  border-radius: 8px;
-  width: 100%;
-  margin-top: 10vh;
-
-  h3 {
-    margin: 0;
-    color: white;
-  }
-}
-
 .btn-start {
   margin-top: 32px;
   width: 50vw;
 }
 
-.createWish-btn {
-  position: absolute;
-  right: 0;
-  bottom: 0;
-  z-index: 99999;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  cursor: pointer;
 
-  &:hover {
-    opacity: 0.4;
-  }
-
-  mat-icon {
-    font-size: 2em !important;
-  }
-}
 
 .trash-icon {
   cursor: pointer;
 
   &:hover {
     opacity: 0.4;
+  }
+}
+
+.yourWishList-headline {
+  align-items: center;
+  display: flex;
+  justify-content: space-between;
+  
+
+  div {
+    display: flex;
+   align-items: center;
+   width: 50%;
+  }
+  img {
+    height: 80px !important;
+    width: 80px !important;
+    object-fit: cover;
+  }
+
+  h2 {
+    margin: 0 !important;
+  }
+
+  button {
+    background: #629b3b;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+   
+    mat-icon {
+      font-size: 2em !important;
+     
+    }
   }
 }
