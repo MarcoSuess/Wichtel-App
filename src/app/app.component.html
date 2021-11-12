@@ -1,6 +1,13 @@
 <header>
-  <img class="logo" src="assets/wichtel-app-logo.png">
 
+
+  <mat-icon *ngIf="checkRoute()" (click)="goBack()" class="material-icons-outlined">
+    navigate_before
+  </mat-icon>
+
+  <img *ngIf="!checkRoute()" class="logo" src="assets/wichtel-app-logo.png">
+
+  <h1 *ngIf="checkRoute()">{{channelService.channel?.name}}</h1>
 
   <mat-icon [matMenuTriggerFor]="menu" class="material-icons-outlined">
     menu
@@ -12,9 +19,6 @@
     <app-menu-bar></app-menu-bar>
   </mat-menu>
   
-  <!-- <mat-icon *ngIf="checkRoute()" (click)="goBack()" class="material-icons-outlined">
-    undo
-  </mat-icon> -->
 
 </header>
 <router-outlet></router-outlet>

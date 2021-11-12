@@ -1,7 +1,5 @@
 <div *ngIf="channelService.loadChannel">
-  <div>
-    <h2>{{ channelService.channel.name }}</h2>
-  </div>
+  
 
   <div class="nav-bar">
     <mat-tab-group dynamicHeight>
@@ -9,15 +7,19 @@
         <ng-template mat-tab-label>
           <mat-icon class="example-tab-icon">groups</mat-icon>
         </ng-template>
+        <h2>All Users</h2>
         <div class="group-container">
+
+         
+
           <div
             *ngFor="let user of channelService.channel.joinedUser"
             class="user-container"
             [ngStyle]="{
               'background-color':
                 user.userID == channelService.channel.admin
-                  ? '#8a6fe1'
-                  : '#a4251a'
+                  ? 'rgb(245 181 138)'
+                  : 'white'
             }"
             (click)="openDialogUserData(user)"
           >
@@ -26,10 +28,10 @@
               {{ giftService.returnUserData(user.userID).displayName }}
             </h3>
             <mat-icon *ngIf="user.ready" class="example-tab-icon icon-ready"
-              >thumb_up</mat-icon
+              >done</mat-icon
             >
             <mat-icon *ngIf="!user.ready" class="example-tab-icon icon-ready"
-              >thumb_down</mat-icon
+              >X</mat-icon
             >
           </div>
         </div>

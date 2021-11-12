@@ -6,7 +6,7 @@ import { DialogJoinChannelComponent } from '../dialog-join-channel/dialog-join-c
 import { AuthService } from '../services/auth/auth.service';
 import { ChannelService } from '../services/channel/channel.service';
 import { UserService } from '../services/user/user.service';
-import { Location } from '@angular/common';
+
 
 @Component({
   selector: 'app-channels',
@@ -21,7 +21,7 @@ export class ChannelsComponent implements OnInit {
     public channelService: ChannelService,
     public authService: AuthService,
     public router: Router,
-    private location: Location
+    
   ) {}
 
   ngOnInit(): void {
@@ -55,7 +55,5 @@ export class ChannelsComponent implements OnInit {
     return this.router.url.includes('dashboard');
   }
 
-  goBack() {
-    this.location.back();
-  }
+  
 }

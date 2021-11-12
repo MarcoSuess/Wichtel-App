@@ -1,14 +1,8 @@
 .nav-bar {
-  overflow-y: auto;
-  position: absolute;
-  top: 0;
-  right: 0;
-  left: 0;
-  bottom: 0;
   justify-content: center;
   align-items: center;
   display: flex;
-
+  height: 80vh;
   mat-tab-group {
     height: 100%;
     justify-content: center;
@@ -49,22 +43,17 @@
 }
 
 h2 {
-  display: flex;
-  justify-content: center;
   color: white;
-  margin-top: 32px;
-
-  background: #5a9122;
-  width: 100vw;
+  font-size: 1.8rem;
   font-family: "Irish Grover", cursive !important;
 }
 
 .group-container {
-  width: 80vw;
+  width: 64vw;
   height: 100%;
   display: flex;
   overflow-y: auto;
-  align-items: center;
+  align-items: flex-start;
   flex-direction: column;
 }
 
@@ -73,11 +62,14 @@ h2 {
   width: 80%;
   align-items: center;
   justify-content: center;
-  border-radius: 8px;
+  border-radius: 16px;
   position: relative;
   margin-top: 16px;
-  overflow-y: auto;
   cursor: pointer;
+  background-color: rgb(255 255 255);
+  justify-content: flex-start;
+  padding: 8px;
+  height: 3vh;
 
   &:hover {
     opacity: 0.4;
@@ -85,11 +77,14 @@ h2 {
 
   mat-icon {
     font-size: 24px !important;
-    color: white;
+    color: black !important;
   }
 
   h3 {
     margin: 0;
+    color: #82a1a3;
+    font-size: 1.2rem;
+    font-family: fantasy;
   }
 }
 
@@ -114,8 +109,7 @@ mat-slide-toggle {
 }
 
 .icon-person {
-  position: absolute;
-  left: 16px;
+  margin-right: 16px;
 }
 
 .icon-ready {
