@@ -1,6 +1,4 @@
 <div *ngIf="channelService.loadChannel">
-  
-
   <div class="nav-bar">
     <mat-tab-group dynamicHeight>
       <mat-tab>
@@ -9,9 +7,6 @@
         </ng-template>
         <h2>All Users</h2>
         <div class="group-container">
-
-         
-
           <div
             *ngFor="let user of channelService.channel.joinedUser"
             class="user-container"
@@ -42,31 +37,20 @@
           <mat-icon class="example-tab-icon">account_circle</mat-icon>
         </ng-template>
 
-      
-
         <div class="yourWishList-headline">
           <div>
-            <img src="assets/icons/50-Christmas-Icons-08.png" >
-            <h2>
-              Your Wishlist
-            </h2>
+            <img src="assets/icons/50-Christmas-Icons-08.png" />
+            <h2>Your Wishlist</h2>
           </div>
-         
 
           <button mat-fab color="accent">
             <mat-icon (click)="openDialogCreateWish()" class="example-tab-icon"
               >post_add</mat-icon
             >
           </button>
-
         </div>
-         
-       
-          
 
         <div class="group-container">
-         
-
           <div
             *ngFor="let wish of filterWishUser().wish; let i = index"
             class="user-container"
@@ -74,7 +58,7 @@
             <img src="assets/icons/50-Christmas-Icons-03.png" />
             <h3>{{ wish }}</h3>
 
-          <!--   <mat-icon
+            <!--   <mat-icon
               (click)="deleteWish(i)"
               class="example-tab-icon trash-icon"
               >delete</mat-icon
@@ -92,15 +76,17 @@
 
         <div class="yourWishList-headline">
           <div>
-            <img src="assets/icons/50-Christmas-Icons-50.png" >
-            <h2>
-              Wichteln
-            </h2>
+            
+            <img *ngIf="!filterWishUser().open" src="assets/icons/50-Christmas-Icons-50.png" />
+            <h2 *ngIf="!filterWishUser().open">Wichteln</h2>
+        <!--     open -->
+            <img *ngIf="filterWishUser().open" src="assets/icons/50-Christmas-Icons-30.png" />
+            <h2 *ngIf="filterWishUser().open">Your Wichtel: </h2>
           </div>
         </div>
 
         <div
-          *ngIf="!filterWishUser().draggedUser"
+          *ngIf="!filterWishUser().draggedUser && !filterWishUser().open"
           class="group-container gift-container"
         >
           <img
@@ -110,36 +96,32 @@
           />
           <!-- <mat-spinner [color]="'warn'" *ngIf="giftService.loadGift"></mat-spinner> -->
 
-        <div class="ready-container">
+          <div class="ready-container">
+            <div>
+              <img src="assets/icons/50-Christmas-Icons-45.png" />
+              <mat-slide-toggle
+                *ngIf="channelService.channel.joinedUser"
+                [checked]="filterUserInChannel()?.ready"
+                (change)="checkToggle($event)"
+                >Ready ?
+              </mat-slide-toggle>
+            </div>
 
-          <div>
-            <img src="assets/icons/50-Christmas-Icons-45.png">
-            <mat-slide-toggle
-            *ngIf="channelService.channel.joinedUser"
-              [checked]="filterUserInChannel()?.ready"
-              (change)="checkToggle($event)"
-              >Ready ?
-            </mat-slide-toggle>
+            <button
+              *ngIf="userService.user.uid == channelService.channel.admin"
+              class="btn-start"
+              mat-raised-button
+              color="warn"
+              (click)="openDialogToStart()"
+            >
+              Start 
+            </button>
           </div>
-   
-
-          <button
-          *ngIf="userService.user.uid == channelService.channel.admin"
-            class="btn-start"
-            mat-raised-button
-            color="warn"
-            (click)="openDialogToStart()"
-          >
-            Start
-          </button>
-        </div>
-          
-      
         </div>
 
         <!--   getUserGift -->
 
-        <div *ngIf="filterWishUser().draggedUser" class="group-container">
+        <div *ngIf="filterWishUser().draggedUser && filterWishUser().open" class="group-container">
           <div class="userTitle">
             <mat-icon class="example-tab-icon icon-person">person</mat-icon>
             <h3>
@@ -151,20 +133,24 @@
             <img
               class="wishList-img"
               *ngIf="
-              giftService.filterOtherUserWishes(giftService.filterOhterUserData()).wish.length <= 0
+                giftService.filterOtherUserWishes(
+                  giftService.filterOhterUserData()
+                ).wish.length <= 0
               "
               src="assets/wish-list.png"
             />
 
             <div
               *ngFor="
-                let wish of giftService.filterOtherUserWishes(giftService.filterOhterUserData()).wish;
+                let wish of giftService.filterOtherUserWishes(
+                  giftService.filterOhterUserData()
+                ).wish;
                 let i = index
               "
-              class="wish-container"
+              class="user-container"
             >
               <img src="assets/gift-icon.png" />
-              <h4>{{ wish }}</h4>
+              <h3>{{ wish }}</h3>
             </div>
           </div>
         </div>
