@@ -21,20 +21,3 @@ header {
   object-fit: cover;
 }
 
-.snowflake {
-  position: absolute;
-  height: 64px;
-  width: 64px;
-  object-fit: cover;
-  z-index: -9999;
-  animation: fallingSnow 24s infinite linear;
-}
-
-@keyframes fallingSnow {
-  0% {
-    transform: translateY(-10vh);
-  }
-  100% {
-    transform: translateY(95vh);
-  }
-}

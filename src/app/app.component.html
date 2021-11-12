@@ -27,10 +27,3 @@
   </mat-menu>
 </header>
 <router-outlet></router-outlet>
-
-<img
-  *ngFor="let img of allSnowFlakes; let i = index"
-  [ngStyle]="setMyStyles(i)"
-  class="snowflake"
-  src="{{ img }}"
-/>

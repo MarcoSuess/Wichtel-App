@@ -28,19 +28,10 @@
   -ms-transform: scale(1);
   z-index: 5;
   max-width: 330px;
-  transform: translateX(0%) rotate(0deg);
-  animation: slideLeft 0.64s ease-in-out;
+  
 }
 
-@keyframes slideLeft {
-  0% {
-    transform: translateX(90%) rotate(0deg);
-  }
 
-  100% {
-    transform: translateX(0%) rotate(0deg);
-  }
-}
 
 /* .box.back {
   transform: scale(0.95);
