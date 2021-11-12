@@ -2,13 +2,25 @@
   position: absolute;
   right: 16px;
   bottom: 32px;
+  background-color: #bc110c;
 }
 
-.material-icons-outlined {
+/* .material-icons-outlined {
   position: absolute;
   right: 16px;
   top: 16px;
   color: white;
+} */
+
+.user-img {
+  position: absolute;
+  right: 16px;
+  top: 0px;
+
+  height: 80px;
+  width: 80px;
+  object-fit: cover;
+  cursor: pointer;
 }
 
 .allChannels-container {
@@ -17,20 +29,25 @@
 
   .channelData {
     cursor: pointer;
-    width: 80vw;
-    background: #a4251a;
+    width: auto;
+    background: white;
     display: flex;
-    justify-content: center;
+    justify-content: flex-start;
     align-items: center;
-    border-radius: 32px;
+    border-radius: 16px;
     position: relative;
-
+    padding: 8px;
+    height: 3vh;
     &:hover {
       opacity: 0.4;
     }
 
     h3 {
       margin: 0;
+      font-family: monospace;
+      font-size: 1.5em;
+      font-weight: bold;
+      color: #bc110c;
     }
   }
 }
@@ -40,15 +57,15 @@ h2 {
   justify-content: center;
   color: white;
   margin-top: 32px;
-  background: #5a9122;
-  width: 100vw;
+  font-size: 1.5rem;
   font-family: "Irish Grover", cursive !important;
 }
 
 .main-container {
   display: flex;
-  align-items: center;
+  align-items: flex-start;
   flex-direction: column;
+  padding-left: 32px;
 }
 
 .groups {
@@ -65,18 +82,22 @@ h2 {
 }
 
 .gift-icon {
-  color: #f10303;   
-  position: absolute;
-  left: 16px;
-
+  height: 64px;
+  width: 64px;
+  object-fit: cover;
 }
 
 mat-icon {
   z-index: 2;
   cursor: pointer;
 
-
   &:hover {
     opacity: 0.4;
   }
+}
+
+.allChannels-main-container {
+  width: 64vw;
+  height: 72vh;
+  overflow-y: auto;
 }

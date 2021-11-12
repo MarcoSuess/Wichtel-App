@@ -1,8 +1,18 @@
 header {
   display: flex;
-  justify-content: flex-start;
+  height: 8vh;
+  align-items: center;
+  justify-content: space-between;
+  padding: 0px 16px 0px 16px;
+
+
+  mat-icon {
+    color: white;
+    cursor: pointer;
+  }
 }
 
-
-
-
+.logo {
+ height: 8vh;
+  object-fit: cover;
+}

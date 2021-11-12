@@ -36,6 +36,7 @@ import { DialogAddWishComponent } from './dialog-add-wish/dialog-add-wish.compon
 import { DialogDeleteChannelComponent } from './dialog-delete-channel/dialog-delete-channel.component';
 import { DialogStartComponent } from './dialog-start/dialog-start.component';
 import { DialogUserDeleteComponent } from './dialog-user-delete/dialog-user-delete.component';
+import { MenuBarComponent } from './menu-bar/menu-bar.component';
 
 
 @NgModule({
@@ -51,6 +52,7 @@ import { DialogUserDeleteComponent } from './dialog-user-delete/dialog-user-dele
     DialogDeleteChannelComponent,
     DialogStartComponent,
     DialogUserDeleteComponent,
+    MenuBarComponent,
   ],
   imports: [
     AngularFireModule.initializeApp(environment.firebase),

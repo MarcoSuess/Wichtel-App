@@ -1,5 +1,21 @@
 <header>
-  <h1>WICHTEL APP</h1>
+  <img class="logo" src="assets/wichtel-app-logo.png">
+
+
+  <mat-icon [matMenuTriggerFor]="menu" class="material-icons-outlined">
+    menu
+  </mat-icon>
+  
+  
+  
+  <mat-menu #menu="matMenu">
+    <app-menu-bar></app-menu-bar>
+  </mat-menu>
+  
+  <!-- <mat-icon *ngIf="checkRoute()" (click)="goBack()" class="material-icons-outlined">
+    undo
+  </mat-icon> -->
+
 </header>
 <router-outlet></router-outlet>
 
