@@ -1,13 +1,19 @@
 <div class="main-wrapper" fxLayout="row" fxLayoutAlign="center center">
+  <div class="sign-contanier">
 
 
-  <div >
+
+    <mat-progress-bar
+      *ngIf="authService.loadBar"
+      mode="indeterminate"
+    ></mat-progress-bar>
+
     <mat-card class="box">
       <mat-card-header>
         <mat-card-title>Sign In</mat-card-title>
       </mat-card-header>
 
-      <form class="example-form">
+      <form (submit)="authService.signInUser(email.value, password.value)" class="example-form">
         <mat-card-content>
           <mat-form-field class="example-full-width">
             <input
@@ -17,7 +23,7 @@
               [formControl]="authService.email"
               required
             />
-            <mat-error  *ngIf="authService.email.invalid">{{
+            <mat-error *ngIf="authService.email.invalid">{{
               authService.getErrorMessageEmail()
             }}</mat-error>
           </mat-form-field>
@@ -38,8 +44,6 @@
         </mat-card-content>
         <a
           ><button
-            (click)="authService.signInUser(email.value, password.value)"
-            [disabled]="!email.value && !password.value"
             mat-stroked-button
             color="accent"
             class="btn-block"
@@ -50,7 +54,7 @@
       </form>
 
       <p class="outside-message">
-        Not Register?
+        Not Registered?
         <a routerLink="/sign-up" routerLinkActive="router-link-active"
           >Sign-Up</a
         >

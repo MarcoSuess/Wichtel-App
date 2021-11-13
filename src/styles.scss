@@ -1,6 +1,6 @@
 /* You can add global styles to this file, and also import other style files */
 @import "~@angular/material/prebuilt-themes/indigo-pink.css";
-@import url("https://fonts.googleapis.com/css2?family=Irish+Grover&display=swap");
+
 html,
 body {
   height: 100%;
@@ -16,8 +16,6 @@ mat-card {
   width: 50vw !important;
   background: #de5b5b !important;
   color: white !important;
-  z-index: 2000 !important;
-
 }
 
 mat-error {
@@ -26,18 +24,15 @@ mat-error {
 mat-form-field {
   color: white;
 }
-
 h1 {
-  font-family: "Irish Grover", cursive !important;
   font-size: 3.5em !important;
   color: white;
   margin: 16px 0 0 16px !important;
   text-align: center;
-
+  width: 50% !important;
   @media only screen and (max-width: 800px) {
     font-size: 2.5em !important;
   }
-
 }
 
 input {
@@ -61,4 +56,17 @@ input[data-autocompleted] {
 mat-dialog-container {
   background: #de5b5b !important;
   color: white !important;
+}
+
+
+.sign-contanier {
+    position: relative;
+}
+
+mat-progress-bar {
+  position: absolute;
+  top: 0;
+  z-index: 9999;
+  right: 0;
+  left: 0;
 }

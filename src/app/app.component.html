@@ -27,3 +27,9 @@
   </mat-menu>
 </header>
 <router-outlet></router-outlet>
+
+
+<footer *ngIf="!checkRoute()" >
+  <a (click)="openDialogLegalNotice()">Legal Notice</a>
+  <a (click)="openDialogDataProtection()">Data Protection</a>
+</footer>

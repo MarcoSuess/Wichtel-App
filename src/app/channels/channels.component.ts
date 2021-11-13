@@ -7,7 +7,6 @@ import { AuthService } from '../services/auth/auth.service';
 import { ChannelService } from '../services/channel/channel.service';
 import { UserService } from '../services/user/user.service';
 
-
 @Component({
   selector: 'app-channels',
   templateUrl: './channels.component.html',
@@ -20,8 +19,7 @@ export class ChannelsComponent implements OnInit {
     public userService: UserService,
     public channelService: ChannelService,
     public authService: AuthService,
-    public router: Router,
-    
+    public router: Router
   ) {}
 
   ngOnInit(): void {
@@ -45,8 +43,8 @@ export class ChannelsComponent implements OnInit {
         joinedUser: channel.joinedUser,
         name: channel.name,
         password: channel.password,
-        index : index,
-        open: channel.open
+        index: index,
+        open: channel.open,
       },
     });
   }
@@ -54,6 +52,4 @@ export class ChannelsComponent implements OnInit {
   checkRoute() {
     return this.router.url.includes('dashboard');
   }
-
-  
 }

@@ -10,10 +10,6 @@ header {
     cursor: pointer;
     font-size: 2em;
   }
-
-  b {
-    color: #82a1a3;
-  }
 }
 
 .logo {
@@ -21,3 +17,21 @@ header {
   object-fit: cover;
 }
 
+footer {
+  position: absolute;
+  bottom: 0;
+  right: 0;
+  left: 0;
+  display: flex;
+  justify-content: flex-end;
+  padding: 16px;
+
+  a {
+    margin-right: 16px;
+    cursor: pointer;
+
+    &:hover {
+      color: white;
+    }
+  }
+}

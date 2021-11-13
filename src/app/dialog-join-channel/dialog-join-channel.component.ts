@@ -41,16 +41,12 @@ export class DialogJoinChannelComponent implements OnInit {
         this.navigateToDashboard();
       } else if (this.channel.open) {
         this.addUser();
+      } else {
+        this.authService.openErrorMessage('Channel is not open!');
       }
     } else {
-      this.errorMessage();
+      this.authService.openErrorMessage('Password is not correct!');
     }
-  }
-
-  errorMessage() {
-    if (!this.channel.open)
-      this.authService.openErrorMessage('Channel is not open!');
-    else this.authService.openErrorMessage('Password is not correct!');
   }
 
   addUser() {

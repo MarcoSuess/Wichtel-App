@@ -23,6 +23,12 @@ export class AuthService {
     Validators.minLength(6),
   ]);
 
+  userName  = new FormControl('', [
+    Validators.required
+  ]);
+
+  loadBar: boolean = false;
+
   constructor(
     public afs: AngularFirestore, // Inject Firestore service
     public firebase: FirebaseApp,
@@ -33,6 +39,15 @@ export class AuthService {
     private _snackBar: MatSnackBar,
     private userService: UserService
   ) {}
+
+
+
+  getErrorMessageName() {
+    
+      return 'You must enter a value';
+    
+  }
+  
 
   getErrorMessageEmail() {
     if (this.email.hasError('required')) {
@@ -54,10 +69,14 @@ export class AuthService {
     this.afAuth
       .createUserWithEmailAndPassword(email, password)
       .then((result) => {
-        // sends verification Email
-        result.user?.sendEmailVerification();
-        this.setUserData(result.user, name);
-        this.navigateToSignIn();
+        this.loadBar = true;
+
+        setTimeout(() => {
+          result.user?.sendEmailVerification();
+          this.setUserData(result.user, name);
+          this.navigateToSignIn();
+          this.loadBar = false;
+        }, 2000);
       })
       .catch((error) => {
         console.log(error);
@@ -72,9 +91,13 @@ export class AuthService {
     this.afAuth
       .signInWithEmailAndPassword(email, password)
       .then((result) => {
-        this.userOnline(result.user?.uid);
-        this.currentUserID = result.user?.uid;
-        this.navigateToBoard();
+        this.loadBar = true;
+        setTimeout(() => {
+          this.userOnline(result.user?.uid);
+          this.currentUserID = result.user?.uid;
+          this.navigateToBoard();
+          this.loadBar = false;
+        }, 2000);
       })
       .catch((error) => {
         const errorCode = error.code;
@@ -119,7 +142,6 @@ export class AuthService {
       emailVerified: user.emailVerified,
       online: false,
       wishes: [],
-      
     };
     return userRef.set(userData, {
       merge: true,

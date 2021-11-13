@@ -37,7 +37,9 @@ import { DialogDeleteChannelComponent } from './dialog-delete-channel/dialog-del
 import { DialogStartComponent } from './dialog-start/dialog-start.component';
 import { DialogUserDeleteComponent } from './dialog-user-delete/dialog-user-delete.component';
 import { MenuBarComponent } from './menu-bar/menu-bar.component';
-
+import { DialogLegalNoticeComponent } from './dialog-legal-notice/dialog-legal-notice.component';
+import { DialogDataProtectionComponent } from './dialog-data-protection/dialog-data-protection.component';
+import {MatProgressBarModule} from '@angular/material/progress-bar';
 
 @NgModule({
   declarations: [
@@ -53,6 +55,8 @@ import { MenuBarComponent } from './menu-bar/menu-bar.component';
     DialogStartComponent,
     DialogUserDeleteComponent,
     MenuBarComponent,
+    DialogLegalNoticeComponent,
+    DialogDataProtectionComponent,
   ],
   imports: [
     AngularFireModule.initializeApp(environment.firebase),
@@ -77,6 +81,7 @@ import { MenuBarComponent } from './menu-bar/menu-bar.component';
     MatTabsModule,
     MatButtonModule,
     MatSlideToggleModule,
+    MatProgressBarModule
     
   ],
   providers: [AuthService],
