@@ -148,6 +148,24 @@ export class AuthService {
     });
   }
 
+  /* setUserGuest() {
+    const userRef: AngularFirestoreDocument<any> = this.afs.doc(
+      `users/guest`
+    );
+    const userData = {
+      uid: 'guest',
+      email: 'guest@web.de',
+      displayName: 'Guest',
+      emailVerified: '',
+      online: false,
+      wishes: [],
+    };
+    return userRef.set(userData, {
+      merge: true,
+    });
+  }
+ */
+
   signOut() {
     const auth = getAuth();
     signOut(auth)

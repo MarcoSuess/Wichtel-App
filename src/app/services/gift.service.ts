@@ -19,8 +19,6 @@ export class GiftService {
   getAllUserGift() {
     let arr = this.channelService.channel.joinedUser;
 
-    console.log(this.i);
-
     if (arr.length > 2 && !this.checkFalseExistsArray(arr))
       do {
         let randomUserIndex = this.getRandomUserIndex(arr);
@@ -32,18 +30,16 @@ export class GiftService {
             this.filterOtherUserWishes(this.returnUserData(user.userID))
               .forbiddenUser
         ) {
-          console.log('teast', randomUserIndex);
-          console.log(this.i);
-
           this.pushUserGift(user, arr[randomUserIndex]);
 
           console.log(arr.length);
           this.i++;
 
           if (this.i == arr.length) {
-            console.log('safe all user');
-            this.safeAllUserData(arr);
-            this.loadGift = false;
+            if (this.userService.user.uid !== 'guest') {
+              this.safeAllUserData(arr);
+              this.loadGift = false;
+            }
           }
         }
       } while (this.loadGift);

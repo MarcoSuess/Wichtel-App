@@ -84,7 +84,7 @@ h2 {
   height: auto;
 
   &:hover {
-    opacity: 0.4;
+    opacity: 0.7;
   }
 
   mat-icon {
@@ -111,7 +111,7 @@ h2 {
     cursor: pointer;
 
     &:hover {
-      opacity: 0.4;
+      opacity: 0.7;
     }
   }
 }
@@ -169,6 +169,10 @@ mat-slide-toggle {
     display: flex;
     justify-content: center;
     align-items: center;
+
+    &:hover {
+      opacity: 0.8;
+    }
 
     mat-icon {
       font-size: 2em !important;

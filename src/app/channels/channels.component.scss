@@ -100,4 +100,11 @@ mat-icon {
   width: 64vw;
   height: 72vh;
   overflow-y: auto;
+
+
+
+  @media only screen and (max-width: 420px) {
+    width: 88vw;
+  }
+ 
 }

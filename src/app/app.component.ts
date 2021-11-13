@@ -29,6 +29,10 @@ export class AppComponent implements OnInit {
     return this.router.url.includes('dashboard');
   }
 
+  checkRouteChannel() {
+    return this.router.url.includes('channel');
+  }
+
   goBack() {
     this.location.back();
   }

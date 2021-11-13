@@ -28,7 +28,6 @@
             <mat-error *ngIf="authService.userName.invalid">{{
               authService.getErrorMessageName()
             }}</mat-error>
-
           </mat-form-field>
 
           <mat-form-field class="example-full-width">
@@ -59,13 +58,18 @@
           </mat-form-field>
         </mat-card-content>
         <a>
-          <button mat-stroked-button color="accent" class="btn-block">
+          <button
+            [disabled]="authService.loadBar"
+            mat-stroked-button
+            color="accent"
+            class="btn-block"
+          >
             Sign Up
           </button>
         </a>
       </form>
 
-      <p class="outside-message">
+      <p *ngIf="!authService.loadBar" class="outside-message">
         Already Registered?
         <a routerLink="/sign-in" routerLinkActive="router-link-active"
           >Sign-In</a
