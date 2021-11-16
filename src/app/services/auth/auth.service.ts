@@ -23,9 +23,7 @@ export class AuthService {
     Validators.minLength(6),
   ]);
 
-  userName  = new FormControl('', [
-    Validators.required
-  ]);
+  userName = new FormControl('', [Validators.required]);
 
   loadBar: boolean = false;
 
@@ -40,14 +38,9 @@ export class AuthService {
     private userService: UserService
   ) {}
 
-
-
   getErrorMessageName() {
-    
-      return 'You must enter a value';
-    
+    return 'You must enter a value';
   }
-  
 
   getErrorMessageEmail() {
     if (this.email.hasError('required')) {
@@ -148,23 +141,30 @@ export class AuthService {
     });
   }
 
-  /* setUserGuest() {
+  setUserGuest(user: any) {
     const userRef: AngularFirestoreDocument<any> = this.afs.doc(
-      `users/guest`
+      `users/${user.name}`
     );
     const userData = {
-      uid: 'guest',
-      email: 'guest@web.de',
-      displayName: 'Guest',
+      uid: user.name,
+      email: '',
+      displayName: user.name,
       emailVerified: '',
       online: false,
-      wishes: [],
+      wishes: [
+        {
+          channelID: 'OnlyForGuest',
+          draggedUser: '',
+          forbiddenUser: '',
+          open: false,
+          wish: user.wishes,
+        },
+      ],
     };
     return userRef.set(userData, {
       merge: true,
     });
   }
- */
 
   signOut() {
     const auth = getAuth();

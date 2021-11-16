@@ -101,9 +101,9 @@
             (click)="openGift()"
             src="assets/icons/50-Christmas-Icons-23.png"
           />
-          <!-- <mat-spinner [color]="'warn'" *ngIf="giftService.loadGift"></mat-spinner> -->
+          <mat-spinner [color]="'warn'" *ngIf="giftService.loadGift"></mat-spinner>
 
-          <div class="ready-container">
+          <div *ngIf="channelService.channel.open" class="ready-container">
             <div>
               <img src="assets/icons/50-Christmas-Icons-45.png" />
               <mat-slide-toggle
@@ -134,7 +134,7 @@
         >
    
 
-          <div class="group-container profile-section">
+          <div class="group-container profile-section ">
             <img
               class="wishList-img"
               *ngIf="
@@ -152,7 +152,7 @@
                 ).wish;
                 let i = index
               "
-              class="user-container"
+              class="user-container mg-left-16px"
             >
               <img src="assets/icons/50-Christmas-Icons-23.png" />
               <h3>{{ wish }}</h3>

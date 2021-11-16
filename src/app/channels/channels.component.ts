@@ -35,20 +35,23 @@ export class ChannelsComponent implements OnInit {
   }
 
   openDialogChannelLogin(channel: any, index: number) {
-
-    if(channel.name == 'OnlyForGuest' && this.userService.user.uid == 'guest') {
-      
+    if (
+      channel.name == 'OnlyForGuest' &&
+      this.userService.user.uid == 'guest'
+    ) {
       this.router.navigateByUrl(
         '/channel/' + this.userService.user.uid + '/dashboard/' + channel.ID
       );
-    } else if(channel.ID  !== 'HE4PK7FZOcbNUDTOl3Mo') {
-      this.openDialogJoin(channel, index)
+    } else if (channel.ID !== 'OnlyForGuest' &&  this.userService.user.uid !== 'guest') {
+      this.openDialogJoin(channel, index);
     } else {
-      this.authService.openErrorMessage('You cannot join because is only for guest user')
+      this.authService.openErrorMessage(
+        'You cannot join because is only for guest user'
+      );
     }
   }
 
-  openDialogJoin(channel: any, index:number) {
+  openDialogJoin(channel: any, index: number) {
     this.dialog.open(DialogJoinChannelComponent, {
       data: {
         ID: channel.ID,

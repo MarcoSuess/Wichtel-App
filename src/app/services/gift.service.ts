@@ -7,7 +7,8 @@ import { UserService } from './user/user.service';
   providedIn: 'root',
 })
 export class GiftService {
-  loadGift: boolean = false;
+  public loadGift: boolean = false;
+
   i = 0;
 
   constructor(
@@ -17,33 +18,43 @@ export class GiftService {
   ) {}
 
   getAllUserGift() {
-    let arr = this.channelService.channel.joinedUser;
-
-    if (arr.length > 2 && !this.checkFalseExistsArray(arr))
+    let allUsers = this.channelService.channel.joinedUser;
+    let draggedUsers: any = [];
+    if (allUsers.length > 2 && !this.checkFalseExistsArray(allUsers))
       do {
-        let randomUserIndex = this.getRandomUserIndex(arr);
-        this.loadGift = true;
-        const user = arr[this.i];
-        if (
-          arr[randomUserIndex].userID !== user.userID &&
-          arr[randomUserIndex].userID !==
-            this.filterOtherUserWishes(this.returnUserData(user.userID))
-              .forbiddenUser
-        ) {
-          this.pushUserGift(user, arr[randomUserIndex]);
+        let randomUserIndex = this.getRandomUserIndex(allUsers);
 
-          console.log(arr.length);
+        this.loadGift = true;
+        const user = allUsers[this.i];
+
+        if (
+          allUsers[randomUserIndex].userID !== user.userID &&
+          allUsers[randomUserIndex].userID !==
+            this.filterOtherUserWishes(this.returnUserData(user.userID))
+              .forbiddenUser &&
+          allUsers[randomUserIndex].userID !==
+            this.filterDraggedUsers(
+              draggedUsers,
+              allUsers[randomUserIndex].userID
+            )
+        ) {
+          this.pushUserGift(user, allUsers[randomUserIndex]);
+          draggedUsers.push(allUsers[randomUserIndex].userID);
           this.i++;
 
-          if (this.i == arr.length) {
-            if (this.userService.user.uid !== 'guest') {
-              this.safeAllUserData(arr);
+          if (this.i == allUsers.length) {
+            console.log(this.i);
+            this.channelService.channel.open = false;
+            setTimeout(() => {
               this.loadGift = false;
-            }
+            }, 2000);
+         
+            this.channelService.updateCurrentChannel();
+            this.safeAllUserData(allUsers);
           }
         }
       } while (this.loadGift);
-    else if (arr.length > 2 && this.checkFalseExistsArray(arr)) {
+    else if (allUsers.length > 2 && this.checkFalseExistsArray(allUsers)) {
       this.authService.openErrorMessage('Not all users are ready');
     } else this.authService.openErrorMessage('You need at least 3 users');
   }
@@ -66,8 +77,6 @@ export class GiftService {
 
     otherUserWish.forbiddenUser = user.userID;
     console.log(this.filterOtherUserWishes(this.returnUserData(user.userID)));
-    /*   this.saveRandomUser(user);
-    this.saveRandomUser(randomUser); */
   }
 
   filterUserWishes() {
@@ -78,8 +87,11 @@ export class GiftService {
     return getUser[0];
   }
 
-  saveRandomUser(randomUser: any) {
-    this.userService.saveOtherUserData(this.returnUserData(randomUser.userID));
+  filterDraggedUsers(draggedUsers: any, randomUser: any) {
+    let user = draggedUsers.filter(
+      (draggedUsers: any) => draggedUsers == randomUser
+    );
+    return user[0];
   }
 
   checkFalseExistsArray(array: any) {

@@ -17,8 +17,6 @@ export class DialogStartComponent implements OnInit {
   ngOnInit(): void {}
 
   startShareGifts() {
-    this.channelService.channel.open = false;
-    this.channelService.updateCurrentChannel();
     this.giftService.getAllUserGift();
   }
 }

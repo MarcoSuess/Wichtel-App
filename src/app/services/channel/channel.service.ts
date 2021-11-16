@@ -34,7 +34,28 @@ export class ChannelService {
       ID: newID,
       joinedUser: [],
       admin: this.userService.user.uid,
-      open: true
+      open: true,
+    };
+    return channelRef.set(channelData, {
+      merge: true,
+    });
+  }
+
+  createGuestChannel() {
+    const channelRef: AngularFirestoreDocument<any> = this.afs.doc(
+      `channels/OnlyForGuest`
+    );
+    const channelData = {
+      name: 'OnlyForGuest',
+      password: 'OnlyForGuest3141',
+      ID: 'OnlyForGuest',
+      joinedUser: [
+        { ready: false, userID: 'guest' },
+        { ready: true, userID: 'javaScript' },
+        { ready: true, userID: 'computer' },
+      ],
+      admin: 'guest',
+      open: true,
     };
     return channelRef.set(channelData, {
       merge: true,
@@ -80,7 +101,7 @@ export class ChannelService {
       ID: channel.ID,
       joinedUser: channel.joinedUser,
       admin: channel.admin,
-      open:  channel.open
+      open: channel.open,
     };
   }
 
@@ -101,10 +122,8 @@ export class ChannelService {
       .get()
       .toPromise()
       .then((querySnapshot) => {
-        querySnapshot.docs[channelIndex].ref.delete()
+        querySnapshot.docs[channelIndex].ref.delete();
         this.allChannels.splice(channelIndex, 1);
       });
   }
-
-
 }
