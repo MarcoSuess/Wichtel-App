@@ -6,7 +6,7 @@ header {
   padding: 0px 16px 0px 16px;
 
   mat-icon {
-    color: #000000;
+    color: black;
     cursor: pointer;
     font-size: 2em;
   }
@@ -48,4 +48,66 @@ h1 {
   display: block !important;
   margin-top: 32px !important;
   font-size: 2.5em !important;
+}
+
+:host ::ng-deep .mat-drawer-content {
+  overflow: hidden !important;
+
+}
+
+:host ::ng-deep .mat-drawer-container {
+/*   position: unset !important; */
+
+  background-color: transparent !important;
+  z-index: 999999 !important;
+}
+
+:host ::ng-deep .mat-drawer-inner-container {
+  overflow: hidden !important;
+  background: #82a1a3;
+}
+
+:host ::ng-deep .drawer-container {
+  position: absolute;
+  top: 0;
+  width: 100%;
+  bottom: 0;
+}
+
+.logout-btn {
+  background: #f5b58a;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 100%;
+  margin-top: 32px;
+  color: white;
+  border: 0;
+  border-radius: 0px 16px 16px 0px;
+  cursor: pointer;
+
+  &:hover {
+    opacity: 0.6;
+  }
+
+  h3 {
+    margin: 0;
+  }
+
+  mat-icon {
+    margin-right: 16px;
+  }
+
+  b {
+    color: #000000;
+  }
+}
+
+mat-drawer {
+  img {
+    height: 128px;
+    width: 100%;
+    margin-top: 32px;
+    object-fit: cover;
+  }
 }

@@ -14,22 +14,44 @@
     {{ channelService.channel?.name }}
   </h1>
 
-  <mat-icon
-    *ngIf="userService.user"
-    [matMenuTriggerFor]="menu"
-    class="material-icons-outlined"
+  <mat-drawer-container
+    [ngStyle]="{ position: drawer.opened ? 'unset' : 'relative' }"
+    
+    class="example-container"
+    autosize
   >
-    menu
-  </mat-icon>
+    <mat-drawer
+      class="example-sidenav"
+      #drawer
+      mode="over"
+      opened="false"
+      position="end"
+    >
+      <app-menu-bar *ngIf="userService.user"></app-menu-bar>
 
-  <mat-menu #menu="matMenu">
-    <app-menu-bar *ngIf="userService.user"></app-menu-bar>
-  </mat-menu>
+      <button
+        (click)="authService.signOut(); drawer.toggle()"
+        class="logout-btn"
+      >
+        <mat-icon> logout </mat-icon>
+        <b>Logout</b>
+      </button>
+
+      <img src="assets/icons/50-Christmas-Icons-14.png" />
+    </mat-drawer>
+
+    <mat-icon
+      (click)="drawer.toggle()"
+      *ngIf="userService.user && checkRouteChannel()"
+      class="material-icons-outlined"
+    >
+      menu
+    </mat-icon>
+  </mat-drawer-container>
 </header>
 <router-outlet></router-outlet>
 
-
-<footer *ngIf="!checkRouteChannel()" >
+<footer *ngIf="!checkRouteChannel()">
   <a (click)="openDialogLegalNotice()">Legal Notice</a>
   <a (click)="openDialogDataProtection()">Data Protection</a>
 </footer>

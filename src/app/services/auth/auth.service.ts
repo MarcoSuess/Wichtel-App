@@ -172,6 +172,7 @@ export class AuthService {
       .then((result) => {
         console.log(result);
         this.router.navigateByUrl('/');
+        
         this.userService.user.online = false;
         this.userService.saveUserData();
       })

@@ -6,18 +6,22 @@ import { UserService } from './services/user/user.service';
 import {MatDialog} from '@angular/material/dialog';
 import { DialogLegalNoticeComponent } from './dialog-legal-notice/dialog-legal-notice.component';
 import { DialogDataProtectionComponent } from './dialog-data-protection/dialog-data-protection.component';
+import { AuthService } from './services/auth/auth.service';
 @Component({
   selector: 'app-root',
   templateUrl: './app.component.html',
   styleUrls: ['./app.component.scss'],
 })
 export class AppComponent implements OnInit {
+
+  
   constructor(
     public userService: UserService,
     public router: Router,
     private location: Location,
     public channelService: ChannelService,
-    public dialog: MatDialog
+    public dialog: MatDialog,
+    public authService: AuthService
   ) {}
 
   ngOnInit(): void {
