@@ -53,16 +53,13 @@
         <div class="group-container">
           <div
             *ngFor="let wish of filterWishUser().wish; let i = index"
+            (click)="openDialogEditWish(i, wish)"
             class="user-container"
           >
             <img src="assets/icons/50-Christmas-Icons-03.png" />
-            <h3>{{ wish }}</h3>
+            <h3 >{{ wish }}</h3>
 
-            <!--   <mat-icon
-              (click)="deleteWish(i)"
-              class="example-tab-icon trash-icon"
-              >delete</mat-icon
-            > -->
+      
           </div>
         </div>
       </mat-tab>
@@ -80,6 +77,8 @@
               *ngIf="!filterWishUser().open"
               src="assets/icons/50-Christmas-Icons-50.png"
             />
+
+            
             <h2 *ngIf="!filterWishUser().open">Wichteln</h2>
             <!--     open -->
             <img
@@ -97,11 +96,14 @@
           class="group-container gift-container"
         >
           <img
-            *ngIf="!giftService.loadGift"
+            *ngIf="!giftService.loadGift && !channelService.channel.open"
             (click)="openGift()"
             src="assets/icons/50-Christmas-Icons-23.png"
           />
           <mat-spinner [color]="'warn'" *ngIf="giftService.loadGift"></mat-spinner>
+
+          <h2 class="open-text"  *ngIf="!giftService.loadGift && !channelService.channel.open">    Open it !</h2>
+      
 
           <div *ngIf="channelService.channel.open" class="ready-container">
             <div>

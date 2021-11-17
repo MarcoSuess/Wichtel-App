@@ -189,6 +189,7 @@ mat-slide-toggle {
   border-radius: 16px;
   padding: 8px;
   width: auto;
+  margin-top: 64px;
 
   div {
     display: flex;
@@ -216,4 +217,11 @@ mat-slide-toggle {
 
 mat-spinner {
   margin-top: 64px;
+}
+
+.open-text {
+  color: black;
+  background: #e1902b;
+  border-radius: 8px;
+  padding: 8px;
 }

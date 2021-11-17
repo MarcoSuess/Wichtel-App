@@ -22,6 +22,8 @@ export class GiftService {
     let draggedUsers: any = [];
     if (allUsers.length > 2 && !this.checkFalseExistsArray(allUsers))
       do {
+        
+        
         let randomUserIndex = this.getRandomUserIndex(allUsers);
 
         this.loadGift = true;
@@ -43,7 +45,7 @@ export class GiftService {
           this.i++;
 
           if (this.i == allUsers.length) {
-            console.log(this.i);
+           
             this.channelService.channel.open = false;
             setTimeout(() => {
               this.loadGift = false;
@@ -53,7 +55,7 @@ export class GiftService {
             this.safeAllUserData(allUsers);
           }
         }
-      } while (this.loadGift);
+      } while (this.channelService.channel.open);
     else if (allUsers.length > 2 && this.checkFalseExistsArray(allUsers)) {
       this.authService.openErrorMessage('Not all users are ready');
     } else this.authService.openErrorMessage('You need at least 3 users');

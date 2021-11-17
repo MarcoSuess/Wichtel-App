@@ -57,11 +57,11 @@
 
       <div class="navigation-bar" *ngIf="!authService.loadBar">
 
-        <a (click)="signInGuest()" >Continue as guest</a>
+        <a (click)="signInGuest()" >Continue <br> as guest</a>
 
         <div>
           <p  class="outside-message">
-            Not Registered?
+            Not Registered? <br>
             <a  routerLink="/sign-up" routerLinkActive="router-link-active"
               >Sign-Up</a
             >

@@ -31,7 +31,7 @@ export class DialogUserDeleteComponent implements OnInit {
 
   deleteUser() {
 
-    if(this.channelService.channel.admin !== this.userService.user.uid) {
+    if(this.channelService.channel.admin !== this.user.ID) {
 
    
 

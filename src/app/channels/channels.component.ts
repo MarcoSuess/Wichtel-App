@@ -31,7 +31,14 @@ export class ChannelsComponent implements OnInit {
   }
 
   openDialogCreateChannel() {
-    this.dialog.open(DialogAddChannelComponent);
+    if(this.userService.user.uid == 'guest') {
+      this.authService.openErrorMessage(
+        'is not allow for guest users'
+      );
+    } else {
+      this.dialog.open(DialogAddChannelComponent);
+    }
+
   }
 
   openDialogChannelLogin(channel: any, index: number) {
@@ -46,7 +53,7 @@ export class ChannelsComponent implements OnInit {
       this.openDialogJoin(channel, index);
     } else {
       this.authService.openErrorMessage(
-        'You cannot join because is only for guest user'
+        'is not allow for guest users'
       );
     }
   }

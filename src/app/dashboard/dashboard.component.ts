@@ -3,6 +3,7 @@ import { MatDialog } from '@angular/material/dialog';
 import { ActivatedRoute } from '@angular/router';
 import { DialogAddWishComponent } from '../dialog-add-wish/dialog-add-wish.component';
 import { DialogDeleteChannelComponent } from '../dialog-delete-channel/dialog-delete-channel.component';
+import { DialogEditWishComponent } from '../dialog-edit-wish/dialog-edit-wish.component';
 import { DialogStartComponent } from '../dialog-start/dialog-start.component';
 import { DialogUserDeleteComponent } from '../dialog-user-delete/dialog-user-delete.component';
 import { AuthService } from '../services/auth/auth.service';
@@ -50,7 +51,7 @@ export class DashboardComponent implements OnInit {
       this.filterWishUser().open = true;
       this.userService.saveUserData();
     } else {
-      this.authService.openErrorMessage('has not yet been released');
+      this.authService.openErrorMessage('Has not yet been released');
     }
   }
 
@@ -66,21 +67,30 @@ export class DashboardComponent implements OnInit {
     return getUser[0];
   }
 
-  deleteWish(index: any) {
-    this.filterWishUser().wish.splice(index, 1);
-    this.userService.saveUserData();
-  }
 
   openDialogToStart() {
     this.dialog.open(DialogStartComponent);
   }
 
   openDialogUserData(user: any) {
-    if (this.channelService.channel.admin == this.userService.user.uid)
+    if (
+      this.channelService.channel.admin == this.userService.user.uid &&
+      this.channelService.channel.admin !== 'guest'
+    )
       this.dialog.open(DialogUserDeleteComponent, {
         data: {
           ID: user.userID,
         },
       });
   }
+
+  openDialogEditWish(index: number, wish: string) {
+    this.dialog.open(DialogEditWishComponent, {
+        data: {
+          index: index,
+          currentWish: wish
+        }
+    });
+  }
 }
+

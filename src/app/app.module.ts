@@ -40,6 +40,7 @@ import { MenuBarComponent } from './menu-bar/menu-bar.component';
 import { DialogLegalNoticeComponent } from './dialog-legal-notice/dialog-legal-notice.component';
 import { DialogDataProtectionComponent } from './dialog-data-protection/dialog-data-protection.component';
 import {MatProgressBarModule} from '@angular/material/progress-bar';
+import { DialogEditWishComponent } from './dialog-edit-wish/dialog-edit-wish.component';
 
 @NgModule({
   declarations: [
@@ -57,6 +58,7 @@ import {MatProgressBarModule} from '@angular/material/progress-bar';
     MenuBarComponent,
     DialogLegalNoticeComponent,
     DialogDataProtectionComponent,
+    DialogEditWishComponent,
   ],
   imports: [
     AngularFireModule.initializeApp(environment.firebase),
