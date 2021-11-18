@@ -52,11 +52,10 @@ h1 {
 
 :host ::ng-deep .mat-drawer-content {
   overflow: hidden !important;
-
 }
 
 :host ::ng-deep .mat-drawer-container {
-/*   position: unset !important; */
+  /*   position: unset !important; */
 
   background-color: transparent !important;
   z-index: 999999 !important;
@@ -110,4 +109,10 @@ mat-drawer {
     margin-top: 32px;
     object-fit: cover;
   }
+}
+
+.channel-name {
+  font-size: 2.3em !important;
+  margin: 0 !important;
+  margin-top: 32px !important;
 }

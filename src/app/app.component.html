@@ -9,7 +9,7 @@
 
   <img *ngIf="!checkRoute()" class="logo" src="assets/wichtel-app-logo.png" />
 
-  <h1 *ngIf="checkRoute()">
+  <h1 class="channel-name" *ngIf="checkRoute()">
     <b> Family: </b>
     {{ channelService.channel?.name }}
   </h1>
@@ -37,7 +37,7 @@
         <b>Logout</b>
       </button>
 
-      <img src="assets/icons/50-Christmas-Icons-14.png" />
+    
     </mat-drawer>
 
     <mat-icon
