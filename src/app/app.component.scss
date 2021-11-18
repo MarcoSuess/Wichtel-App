@@ -64,6 +64,11 @@ h1 {
 :host ::ng-deep .mat-drawer-inner-container {
   overflow: hidden !important;
   background: #82a1a3;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+
+  width: 50vw;
 }
 
 :host ::ng-deep .drawer-container {

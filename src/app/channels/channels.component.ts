@@ -41,7 +41,10 @@ export class ChannelsComponent implements OnInit {
 
   }
 
-  openDialogChannelLogin(channel: any, index: number) {
+  openDialogChannelLogin(channel: any, index: number) { 
+
+   /*  clean und channel filtern ohne login */
+
     if (
       channel.name == 'OnlyForGuest' &&
       this.userService.user.uid == 'guest'
