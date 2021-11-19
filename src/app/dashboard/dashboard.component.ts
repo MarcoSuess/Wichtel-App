@@ -72,14 +72,16 @@ export class DashboardComponent implements OnInit {
     this.dialog.open(DialogStartComponent);
   }
 
-  openDialogUserData(user: any) {
+  openDialogDeleteUserData(user: any, index: number) {
     if (
-      this.channelService.channel.admin == this.userService.user.uid &&
-      this.channelService.channel.admin !== 'guest'
+      this.channelService.channel.admin == this.userService.user.uid 
+     /*  &&
+      this.channelService.channel.admin !== 'guest' */
     )
       this.dialog.open(DialogUserDeleteComponent, {
         data: {
           ID: user.userID,
+          index: index
         },
       });
   }

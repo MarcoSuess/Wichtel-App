@@ -8,7 +8,7 @@
         <h2>All Users</h2>
         <div class="group-container overflow-settings">
           <div
-            *ngFor="let user of channelService.channel.joinedUser"
+            *ngFor="let user of channelService.channel.joinedUser; let i = index"
             class="user-container"
             [ngStyle]="{
               'background-color':
@@ -16,7 +16,7 @@
                   ? 'rgb(245 181 138)'
                   : 'white'
             }"
-            (click)="openDialogUserData(user)"
+            (click)="openDialogDeleteUserData(user, i)"
           >
             <mat-icon class="example-tab-icon icon-person">person</mat-icon>
             <h3>
