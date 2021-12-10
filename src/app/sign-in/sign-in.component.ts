@@ -22,7 +22,7 @@ export class SignInComponent implements OnInit {
     {
       name: 'computer',
       wishes: ['Hardware', 'a Good Programmer'],
-    }
+    },
   ];
 
   constructor(
@@ -33,7 +33,11 @@ export class SignInComponent implements OnInit {
   ) {}
 
   ngOnInit(): void {}
+  
 
+  /**
+   * This function sign in as guest user and create new Channel and navigate to channel.
+   */
   signInGuest() {
     for (let user of this.guestUsersData) {
       this.authService.setUserGuest(user);

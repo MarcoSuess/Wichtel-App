@@ -96,8 +96,8 @@ h2 {
     margin: 0;
     color: #82a1a3;
     font-size: 1.2rem;
-    font-family: fantasy;
     word-break: break-word;
+    font-weight: bold;
   }
 }
 
@@ -224,4 +224,8 @@ mat-spinner {
   background: #e1902b;
   border-radius: 8px;
   padding: 8px;
+}
+
+.user-bold {
+  color: #4d4d4d !important;
 }

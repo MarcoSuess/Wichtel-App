@@ -30,21 +30,24 @@ export class ChannelsComponent implements OnInit {
     });
   }
 
+  /**
+   * This function open the dialog to create a channel.
+   */
   openDialogCreateChannel() {
-    if(this.userService.user.uid == 'guest') {
-      this.authService.openErrorMessage(
-        'is not allow for guest users'
-      );
+    if (this.userService.user.uid == 'guest') {
+      this.authService.openErrorMessage('is not allow for guest users');
     } else {
       this.dialog.open(DialogAddChannelComponent);
     }
-
   }
 
-  openDialogChannelLogin(channel: any, index: number) { 
-
-   /*  clean und channel filtern ohne login */
-
+  /**
+   * This function open the Dialog for navigate to  the channel.
+   *
+   * @param {any} channel
+   * @param {number} index
+   */
+  openDialogChannelLogin(channel: any, index: number) {
     if (
       channel.name == 'OnlyForGuest' &&
       this.userService.user.uid == 'guest'
@@ -52,15 +55,23 @@ export class ChannelsComponent implements OnInit {
       this.router.navigateByUrl(
         '/channel/' + this.userService.user.uid + '/dashboard/' + channel.ID
       );
-    } else if (channel.ID !== 'OnlyForGuest' &&  this.userService.user.uid !== 'guest') {
+    } else if (
+      channel.ID !== 'OnlyForGuest' &&
+      this.userService.user.uid !== 'guest'
+    ) {
       this.openDialogJoin(channel, index);
     } else {
-      this.authService.openErrorMessage(
-        'is not allow for guest users'
-      );
+      this.authService.openErrorMessage('is not allow for guest users');
     }
   }
 
+
+  /**
+   * This function open the Dialog to join the channel.
+   * 
+   * @param {any} channel 
+   * @param {number} index 
+   */
   openDialogJoin(channel: any, index: number) {
     this.dialog.open(DialogJoinChannelComponent, {
       data: {
@@ -76,6 +87,11 @@ export class ChannelsComponent implements OnInit {
     });
   }
 
+  /**
+   * This function check if url includes dashboard.
+   * 
+   * @returns {any}
+   */
   checkRoute() {
     return this.router.url.includes('dashboard');
   }

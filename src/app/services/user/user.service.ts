@@ -13,6 +13,12 @@ export class UserService {
 
   constructor(private firestore: AngularFirestore) {}
 
+
+  /**
+   * This function load the current user data in the firestore.
+   * 
+   * @param {any} paramsID 
+   */
   loadCurrentUserData(paramsID: any) {
     this.user = new User();
     this.firestore
@@ -20,8 +26,6 @@ export class UserService {
       .doc(paramsID)
       .valueChanges()
       .subscribe((currentUser: any) => {
-        console.log('CurrentUser Firestore:', currentUser);
-
         this.user.uid = currentUser.uid;
         this.user.email = currentUser.email;
         this.user.displayName = currentUser.displayName;
@@ -33,6 +37,10 @@ export class UserService {
       });
   }
 
+
+  /**
+   * This function load all user data.
+   */
   loadAllUserData() {
     this.firestore
       .collection('users')
@@ -46,6 +54,10 @@ export class UserService {
       });
   }
 
+
+  /**
+   * This function save the user data.
+   */
   saveUserData() {
     console.log(this.user);
 
@@ -55,6 +67,11 @@ export class UserService {
       .update(this.user.toJson());
   }
 
+
+  /** 
+   * This function save the other user data.
+   * @param {any} user 
+   */
   saveOtherUserData(user: any) {
     this.firestore
       .collection('users')
@@ -62,6 +79,12 @@ export class UserService {
       .update(this.OtherUserToJson(user));
   }
 
+
+  /**
+   * This function return other user data to json.
+   * @param {any} user 
+   * @returns {json}
+   */
   OtherUserToJson(user: any) {
     return {
       uid: user.uid,
@@ -72,6 +95,4 @@ export class UserService {
       wishes: user.wishes,
     };
   }
-
-  
 }

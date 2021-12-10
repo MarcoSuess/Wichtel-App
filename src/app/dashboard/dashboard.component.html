@@ -8,7 +8,10 @@
         <h2>All Users</h2>
         <div class="group-container overflow-settings">
           <div
-            *ngFor="let user of channelService.channel.joinedUser; let i = index"
+            *ngFor="
+              let user of channelService.channel.joinedUser;
+              let i = index
+            "
             class="user-container"
             [ngStyle]="{
               'background-color':
@@ -57,9 +60,7 @@
             class="user-container"
           >
             <img src="assets/icons/50-Christmas-Icons-03.png" />
-            <h3 >{{ wish }}</h3>
-
-      
+            <h3>{{ wish }}</h3>
           </div>
         </div>
       </mat-tab>
@@ -78,7 +79,6 @@
               src="assets/icons/50-Christmas-Icons-50.png"
             />
 
-            
             <h2 *ngIf="!filterWishUser().open">Wichteln</h2>
             <!--     open -->
             <img
@@ -86,7 +86,10 @@
               src="assets/icons/50-Christmas-Icons-30.png"
             />
             <h2 *ngIf="filterWishUser().open">
-              Your Wichtel: {{ giftService.filterOhterUserData().displayName }}
+              Your Wichtel:
+              <b class="user-bold">
+                {{ giftService.filterOhterUserData().displayName }}
+              </b>
             </h2>
           </div>
         </div>
@@ -100,10 +103,17 @@
             (click)="openGift()"
             src="assets/icons/50-Christmas-Icons-23.png"
           />
-          <mat-spinner [color]="'warn'" *ngIf="giftService.loadGift"></mat-spinner>
+          <mat-spinner
+            [color]="'warn'"
+            *ngIf="giftService.loadGift"
+          ></mat-spinner>
 
-          <h2 class="open-text"  *ngIf="!giftService.loadGift && !channelService.channel.open">    Open it !</h2>
-      
+          <h2
+            class="open-text"
+            *ngIf="!giftService.loadGift && !channelService.channel.open"
+          >
+            Open it !
+          </h2>
 
           <div *ngIf="channelService.channel.open" class="ready-container">
             <div>
@@ -134,9 +144,7 @@
           *ngIf="filterWishUser().draggedUser && filterWishUser().open"
           class="group-container"
         >
-   
-
-          <div class="group-container profile-section ">
+          <div class="group-container profile-section">
             <img
               class="wishList-img"
               *ngIf="

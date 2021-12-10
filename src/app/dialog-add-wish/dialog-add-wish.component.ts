@@ -19,7 +19,14 @@ export class DialogAddWishComponent implements OnInit {
 
   ngOnInit(): void {}
 
-  saveWish(wish: any) {
+
+
+  /**
+   * This function save the wish.
+   * 
+   * @param {string} wish 
+   */
+  saveWish(wish: string) {
     if (
       this.filterWishUser().channelID == this.channelService.currentChannelID
     ) {
@@ -32,10 +39,14 @@ export class DialogAddWishComponent implements OnInit {
         this.dialogRef.closeAll();
       }, 2800);
     }
-
-  
   }
 
+
+  /**
+   * This function filter the wish from user.
+   * 
+   * @returns {any}
+   */
   filterWishUser() {
     let getUser = this.userService.user.wishes.filter(
       (wishes: { channelID: any }) =>

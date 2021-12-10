@@ -16,9 +16,16 @@
     Save
   </button>
 
-  <button class="delete-btn" (click)="deleteWish()" [disabled]="loadImg" mat-button >Delete</button>
+  <button
+    class="delete-btn"
+    (click)="deleteWish()"
+    [disabled]="loadImg"
+    mat-button
+  >
+    Delete
+  </button>
 </div>
 
 <div class="loadImg-container">
-  <img *ngIf="loadImg"  src="assets/icons/50-Christmas-Icons-45.png" />
+  <img *ngIf="loadImg" src="assets/icons/50-Christmas-Icons-45.png" />
 </div>

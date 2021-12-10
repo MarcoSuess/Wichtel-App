@@ -32,6 +32,11 @@ export class DashboardComponent implements OnInit {
     });
   }
 
+  /**
+   * This function filter the User in channel.
+   *
+   * @returns {any}
+   */
   filterUserInChannel() {
     let getUser = this.channelService.channel?.joinedUser?.filter(
       (joinedUser: { userID: any }) =>
@@ -40,12 +45,20 @@ export class DashboardComponent implements OnInit {
     return getUser[0];
   }
 
+  /**
+   * This function check the Toggle.
+   *
+   * @param {any} event
+   */
   checkToggle(event: any) {
     console.log(this.filterUserInChannel().ready);
     this.filterUserInChannel().ready = event.checked;
     this.channelService.updateCurrentChannel();
   }
 
+  /**
+   * This function open the Gift.
+   */
   openGift() {
     if (this.filterWishUser().draggedUser) {
       this.filterWishUser().open = true;
@@ -55,10 +68,18 @@ export class DashboardComponent implements OnInit {
     }
   }
 
+  /**
+   * This function open dialog create wish component.
+   */
   openDialogCreateWish() {
     this.dialog.open(DialogAddWishComponent);
   }
 
+  /**
+   * This function filter the wish from user.
+   *
+   * @returns {any}
+   */
   filterWishUser() {
     let getUser = this.userService.user.wishes.filter(
       (wishes: { channelID: any }) =>
@@ -67,32 +88,42 @@ export class DashboardComponent implements OnInit {
     return getUser[0];
   }
 
-
+  /**
+   * This function open the start dialog.
+   */
   openDialogToStart() {
     this.dialog.open(DialogStartComponent);
   }
 
+  /**
+   * This function open the dialog delete user data.
+   *
+   * @param {any} user
+   * @param {number} index
+   */
   openDialogDeleteUserData(user: any, index: number) {
-    if (
-      this.channelService.channel.admin == this.userService.user.uid 
-     /*  &&
-      this.channelService.channel.admin !== 'guest' */
-    )
+    if (this.channelService.channel.admin == this.userService.user.uid)
       this.dialog.open(DialogUserDeleteComponent, {
         data: {
           ID: user.userID,
-          index: index
+          index: index,
         },
       });
   }
 
+
+  /**
+   * This function open the Dialog to edit a wish.
+   * 
+   * @param {number} index 
+   * @param {string} wish 
+   */
   openDialogEditWish(index: number, wish: string) {
     this.dialog.open(DialogEditWishComponent, {
-        data: {
-          index: index,
-          currentWish: wish
-        }
+      data: {
+        index: index,
+        currentWish: wish,
+      },
     });
   }
 }
-

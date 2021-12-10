@@ -15,6 +15,13 @@ export class DialogAddChannelComponent implements OnInit {
 
   ngOnInit(): void {}
 
+
+  /**
+   * This function save the new channel.
+   * 
+   * @param {string} name 
+   * @param {string} password 
+   */
   saveChannel(name: string, password: string) {
     this.channelService.createNewChannel(name, password);
     this.channelService.loadAllChannels();

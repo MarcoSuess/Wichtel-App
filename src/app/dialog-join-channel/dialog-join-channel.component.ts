@@ -30,6 +30,12 @@ export class DialogJoinChannelComponent implements OnInit {
     console.log(this.channel);
   }
 
+
+  /**
+   * This function is for Join a channel.
+   * 
+   * @param {string} password 
+   */
   joinChannel(password: string) {
     console.log(this.filterJoinedUser(this.channel.joinedUser));
 
@@ -49,6 +55,10 @@ export class DialogJoinChannelComponent implements OnInit {
     }
   }
 
+
+  /**
+   * This function add the user to the Channel.
+   */
   addUser() {
     this.channel.joinedUser.push({
       userID: this.userService.user.uid,
@@ -65,8 +75,14 @@ export class DialogJoinChannelComponent implements OnInit {
     this.userService.saveUserData();
     this.channelService.saveOtherChannelData(this.channel);
     this.navigateToDashboard();
-  }
+  } 
 
+  /**
+   * This function filter the Joined user from the channel.
+   * 
+   * @param {any} joinedUser 
+   * @returns {any}
+   */
   filterJoinedUser(joinedUser: any) {
     let getUser = joinedUser.filter(
       (joinedUser: { userID: any }) =>
@@ -76,6 +92,10 @@ export class DialogJoinChannelComponent implements OnInit {
     return getUser[0];
   }
 
+
+  /**
+   * This function navigate the url to dashboard
+   */
   navigateToDashboard() {
     this.router.navigateByUrl(
       '/channel/' + this.userService.user.uid + '/dashboard/' + this.channel.ID
@@ -83,6 +103,10 @@ export class DialogJoinChannelComponent implements OnInit {
     this.dialogRef.close();
   }
 
+
+  /**
+   * This function open the warn dialog.
+   */
   openWarnDialog() {
     this.dialog.open(DialogDeleteChannelComponent, {
       data: {

@@ -20,7 +20,14 @@ export class DialogUserDeleteComponent implements OnInit {
   ) {}
 
   ngOnInit(): void {}
+  
 
+  /**
+   * This function return the User data.
+   * 
+   * @param {any} userUID 
+   * @returns {any}
+   */
   returnUserData(userUID: any) {
     let getUser = this.userService.allUser.filter(
       (user: { uid: any }) => user.uid == userUID
@@ -29,6 +36,10 @@ export class DialogUserDeleteComponent implements OnInit {
     return getUser[0];
   }
 
+
+  /**
+   * This function kick the user out from the channel.
+   */
   deleteUser() {
     if (this.channelService.channel.admin !== this.user.ID) {
       this.channelService.channel.joinedUser.splice(this.user.index, 1);

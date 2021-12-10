@@ -1,8 +1,5 @@
 <div class="main-wrapper" fxLayout="row" fxLayoutAlign="center center">
   <div class="sign-contanier">
-
-
-
     <mat-progress-bar
       *ngIf="authService.loadBar"
       mode="indeterminate"
@@ -13,7 +10,10 @@
         <mat-card-title>Sign In</mat-card-title>
       </mat-card-header>
 
-      <form (submit)="authService.signInUser(email.value, password.value)" class="example-form">
+      <form
+        (submit)="authService.signInUser(email.value, password.value)"
+        class="example-form"
+      >
         <mat-card-content>
           <mat-form-field class="example-full-width">
             <input
@@ -44,7 +44,7 @@
         </mat-card-content>
         <a
           ><button
-          [disabled]="authService.loadBar"
+            [disabled]="authService.loadBar"
             mat-stroked-button
             color="accent"
             class="btn-block"
@@ -54,23 +54,21 @@
         >
       </form>
 
-
       <div class="navigation-bar" *ngIf="!authService.loadBar">
-
-        <a (click)="signInGuest()" >Continue <br> as guest</a>
+        <a (click)="signInGuest()"
+          >Continue <br />
+          as guest</a
+        >
 
         <div>
-          <p  class="outside-message">
-            Not Registered? <br>
-            <a  routerLink="/sign-up" routerLinkActive="router-link-active"
+          <p class="outside-message">
+            Not Registered? <br />
+            <a routerLink="/sign-up" routerLinkActive="router-link-active"
               >Sign-Up</a
             >
           </p>
         </div>
-
-        
       </div>
-  
     </mat-card>
   </div>
 </div>

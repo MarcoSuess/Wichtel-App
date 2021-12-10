@@ -8,7 +8,6 @@ import {
 import { FormControl, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
 import { getAuth, signOut } from 'firebase/auth';
-import { doc, getDoc } from 'firebase/firestore';
 import { MatSnackBar } from '@angular/material/snack-bar';
 import { UserService } from '../user/user.service';
 
@@ -38,10 +37,21 @@ export class AuthService {
     private userService: UserService
   ) {}
 
+
+  /**
+   * This function return a Error message.
+   * 
+   * @returns {string}
+   */
   getErrorMessageName() {
     return 'You must enter a value';
   }
 
+   /**
+   * This function return a Error message.
+   * 
+   * @returns {string}
+   */
   getErrorMessageEmail() {
     if (this.email.hasError('required')) {
       return 'You must enter a value';
@@ -50,6 +60,11 @@ export class AuthService {
     return this.email.hasError('email') ? 'Not a valid email' : '';
   }
 
+   /**
+   * This function return a Error message.
+   * 
+   * @returns {string}
+   */
   getErrorMessagePassword() {
     if (this.password.hasError('required')) {
       return 'You must enter a value';
@@ -58,6 +73,14 @@ export class AuthService {
     return this.password.hasError('minlength') ? 'min 6 length required' : '';
   }
 
+
+    /**
+     * This function sign up the user.
+     * 
+     * @param {string} email 
+     * @param {string} password 
+     * @param {string} name 
+     */
   signUpUser(email: string, password: string, name: string) {
     this.afAuth
       .createUserWithEmailAndPassword(email, password)
@@ -72,14 +95,19 @@ export class AuthService {
         }, 2000);
       })
       .catch((error) => {
-        console.log(error);
-
         console.log('errorMessage', error.message);
-        console.log('errorCode', error.code);
         this.openErrorMessage(error.message);
       });
   }
+  
 
+
+  /**
+   * This function sign in the user.
+   * 
+   * @param {string} email 
+   * @param {string} password 
+   */
   signInUser(email: string, password: string) {
     this.afAuth
       .signInWithEmailAndPassword(email, password)
@@ -100,11 +128,22 @@ export class AuthService {
       });
   }
 
+
+  /**
+   * This function update the user to online.
+   * @param {any} uid 
+   */
   userOnline(uid: any) {
     var db = this.firebase.firestore();
     db.collection('users').doc(uid).update({ online: true });
   }
 
+
+  /**
+   * This function open the error message.
+   * 
+   * @param {any} message 
+   */
   openErrorMessage(message: any) {
     this._snackBar.open(message);
     setTimeout(() => {
@@ -112,18 +151,38 @@ export class AuthService {
     }, 1500);
   }
 
+
+  /**
+   * This function close the error Message.
+   */
   closeErrorMessage() {
     this._snackBar.ngOnDestroy();
   }
 
+
+  /**
+   * This function navigate the url to Channel.
+   */
   navigateToBoard() {
     this.router.navigateByUrl('/channel/' + this.currentUserID);
   }
 
+
+  /**
+   * This function navigate the url to Sign in.
+   */
   navigateToSignIn() {
     this.router.navigateByUrl('/sign-in');
   }
 
+
+  /**
+   * This function set the user data.
+   * 
+   * @param {any} user 
+   * @param {any} name 
+   * @returns {any}
+   */
   setUserData(user: any, name: string) {
     const userRef: AngularFirestoreDocument<any> = this.afs.doc(
       `users/${user.uid}`
@@ -141,6 +200,13 @@ export class AuthService {
     });
   }
 
+
+  /**
+   * This function set the data from Guest user.
+   * 
+   * @param {any} user 
+   * @returns {any}
+   */
   setUserGuest(user: any) {
     const userRef: AngularFirestoreDocument<any> = this.afs.doc(
       `users/${user.name}`
@@ -166,13 +232,17 @@ export class AuthService {
     });
   }
 
+
+  /**
+   * This function navigate to index.html and save the user data.
+   */
   signOut() {
     const auth = getAuth();
     signOut(auth)
       .then((result) => {
         console.log(result);
         this.router.navigateByUrl('/');
-        
+
         this.userService.user.online = false;
         this.userService.saveUserData();
       })

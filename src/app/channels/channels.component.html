@@ -13,14 +13,16 @@
   </button>
 
   <h2>Familys</h2>
-  <div class="allChannels-main-container" *ngIf="channelService.allChannels?.length > 0">
+  <div
+    class="allChannels-main-container"
+    *ngIf="channelService.allChannels?.length > 0"
+  >
     <div
       class="allChannels-container"
       *ngFor="let channel of channelService.allChannels; let i = index"
     >
       <div (click)="openDialogChannelLogin(channel, i)" class="channelData">
-      
-          <img class="gift-icon" src="assets/icons/50-Christmas-Icons-50.png">
+        <img class="gift-icon" src="assets/icons/50-Christmas-Icons-50.png" />
         <h3>{{ channel.name }}</h3>
         <div class="groups">
           <mat-icon>groups</mat-icon>
@@ -30,7 +32,5 @@
     </div>
   </div>
 </div>
-
-
 
 <router-outlet *ngIf="checkRoute() && userService.loadAllUser"></router-outlet>

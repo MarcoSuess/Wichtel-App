@@ -22,6 +22,15 @@ export class ChannelService {
     private userService: UserService
   ) {}
 
+
+
+  /**
+   * This function create a new Channel.
+   * 
+   * @param {string} channelName 
+   * @param {string}  password 
+   * @returns {any}
+   */
   createNewChannel(channelName: string, password: string) {
     const newID = this.afs.createId();
 
@@ -41,6 +50,11 @@ export class ChannelService {
     });
   }
 
+
+  /**
+   * This function create a new Guest Channel.
+   * @returns {any}
+   */
   createGuestChannel() {
     const channelRef: AngularFirestoreDocument<any> = this.afs.doc(
       `channels/OnlyForGuest`
@@ -62,6 +76,11 @@ export class ChannelService {
     });
   }
 
+
+  /**
+   * This function load the current channel.
+   * @param {any} paramsID 
+   */
   loadCurrentChannel(paramsID: any) {
     this.currentChannelID = paramsID;
     this.channel = new Channel();
@@ -80,6 +99,10 @@ export class ChannelService {
       });
   }
 
+
+  /**
+   * This function update the current channel.
+   */
   updateCurrentChannel() {
     this.firestore
       .collection('channels')
@@ -87,6 +110,11 @@ export class ChannelService {
       .update(this.channel.toJson());
   }
 
+
+  /**
+   * This function save the other channel data.
+   * @param {any} channel 
+   */
   saveOtherChannelData(channel: any) {
     this.firestore
       .collection('channels')
@@ -94,6 +122,14 @@ export class ChannelService {
       .update(this.OtherUserToJson(channel));
   }
 
+
+
+  /**
+   * This function returns other user data  into json.
+   * 
+   * @param {any} channel 
+   * @returns {json}
+   */
   OtherUserToJson(channel: any) {
     return {
       name: channel.name,
@@ -105,6 +141,10 @@ export class ChannelService {
     };
   }
 
+
+  /**
+   * This function load all channels.
+   */
   loadAllChannels() {
     this.firestore
       .collection('channels')
@@ -116,7 +156,12 @@ export class ChannelService {
       });
   }
 
-  deleteChannel(channelIndex: any) {
+
+  /**
+   * This function delete a channel.
+   * @param {number} channelIndex 
+   */
+  deleteChannel(channelIndex: number) {
     this.firestore
       .collection('channels')
       .get()

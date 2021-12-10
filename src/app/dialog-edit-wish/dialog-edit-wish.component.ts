@@ -11,7 +11,6 @@ import { UserService } from '../services/user/user.service';
 export class DialogEditWishComponent implements OnInit {
   loadImg: boolean = false;
 
-
   constructor(
     @Inject(MAT_DIALOG_DATA) public Userwish: any,
     private userService: UserService,
@@ -21,28 +20,40 @@ export class DialogEditWishComponent implements OnInit {
 
   ngOnInit(): void {
     console.log();
-    
   }
 
+
+  /**
+   * This function delete the wish.
+   */
   deleteWish() {
     this.filterWishUser().wish.splice(this.Userwish.index, 1);
     this.userService.saveUserData();
     this.dialogRef.closeAll();
   }
 
-  saveWish(editWish: any) {
-   
-      this.filterWishUser().wish[this.Userwish.index] = editWish;
-      this.userService.saveUserData();
-      this.loadImg = true;
+  /**
+   * This function save the wish.
+   * 
+   * @param {string} editWish 
+   */
+  saveWish(editWish: string) {
+    this.filterWishUser().wish[this.Userwish.index] = editWish;
+    this.userService.saveUserData();
+    this.loadImg = true;
 
-      setTimeout(() => {
-        this.loadImg = false;
-        this.dialogRef.closeAll();
-      }, 2800);
-    }
+    setTimeout(() => {
+      this.loadImg = false;
+      this.dialogRef.closeAll();
+    }, 2800);
+  }
 
-    
+
+  /**
+   * This function filter the  Wish from the user.
+   * 
+   * @returns {any}
+   */
   filterWishUser() {
     let getUser = this.userService.user.wishes.filter(
       (wishes: { channelID: any }) =>
@@ -50,5 +61,4 @@ export class DialogEditWishComponent implements OnInit {
     );
     return getUser[0];
   }
-  
 }

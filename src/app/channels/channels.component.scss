@@ -98,13 +98,10 @@ mat-icon {
 
 .allChannels-main-container {
   width: 64vw;
-  height: 72vh;
+  height: 50vh;
   overflow-y: auto;
-
-
 
   @media only screen and (max-width: 420px) {
     width: 88vw;
   }
- 
 }

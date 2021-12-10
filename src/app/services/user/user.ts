@@ -4,8 +4,7 @@ export class User {
   public displayName: string | any;
   public emailVerified: boolean | undefined;
   public online: boolean | undefined;
-  public wishes: any =  [];
-
+  public wishes: any = [];
 
   constructor() {}
 
@@ -16,8 +15,7 @@ export class User {
       displayName: this.displayName,
       emailVerified: this.emailVerified,
       online: this.online,
-      wishes: this.wishes
-      
+      wishes: this.wishes,
     };
   }
 }

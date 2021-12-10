@@ -24,6 +24,9 @@ export class DialogDeleteChannelComponent implements OnInit {
 
   ngOnInit(): void {}
 
+  /**
+   * This function delete the channel.
+   */
   async deleteChannel() {
     await this.channelService.deleteChannel(this.channel.index);
     this.matDialog.closeAll();
